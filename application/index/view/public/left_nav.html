@@ -1,0 +1,196 @@
+<div class="submenubox" style="position: absolute;;z-index: 12;background-color:#3299cc;height:560px;"> 
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_8">
+                <h3><a>机械租赁</a></h3>
+                <div class="number">新品、二手</div>
+                <i class="left-sort-right" style="display: block;"></i>
+            </div>
+        </div>
+        <!--浮层--> 
+        <div class="submenuitem">
+            <div class="subsubmenu">
+                <div class="sort sort_8">
+                    <h3><a>机械租赁</a></h3>
+                    <div class="number">新品、二手</div>
+                    <i class="left-sort-right" style="display: block;"></i>
+                </div>
+            </div>
+            <!--浮层--> 
+            <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+                <div class="sortitem"> 
+                    <dl class="subitem clearfix">
+                        <dd>
+                        {volist name="type" id="vo"}
+                        {eq name="vo.pid" value="1"}
+                            <a class="item inline-block" href="({:URL('index/product/productList')})?type=({$vo.id})">({$vo.content})</a> 
+                        {/eq}
+                        {/volist}
+                        </dd>
+                    </dl>
+                </div>
+            <!--/分类--> 
+            </div>
+            <!--/浮层--> 
+        </div>
+        <!--/浮层--> 
+    </div>
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_1">
+                <h3><a href="">机械买卖</a></h3>
+                <div class="number">新品、二手</div>
+                <i class="left-sort-right" style="display: block;"></i>
+            </div>
+        </div>
+        <!--浮层--> 
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem"> 
+                <dl class="subitem clearfix">
+                    <dd>
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="2"}
+                        <a class="item inline-block" href="({:URL('index/product/productList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+        <!--/浮层--> 
+    </div>
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_2">
+                <h3><a>建筑材料</a></h3>
+                <div class="number">原材、辅材、燃料</div>
+                <i class="left-sort-right" style="display: block;"></i> 
+            </div>
+        </div>
+        <!--浮层--> 
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem"> 
+                <dl class="subitem clearfix">
+                    <dd>
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="3"}
+                        <a class="item inline-block" href="({:URL('index/product/productList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+        <!--/浮层--> 
+    </div>
+	  <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_3">
+                <h3><a>工程信息</a></h3>
+                <div class="number">找队伍、找项目</div>
+                <i class="left-sort-right" style="display: block;"></i> 
+            </div>
+        </div>
+        <!--浮层--> 
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem"> 
+                <dl class="subitem clearfix">
+                    <dd>
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="4"}
+                        <a class="item inline-block" href="({:URL('index/engineer/engineerList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+        <!--/浮层--> 
+    </div>  	
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_4">
+                <h3><a>人员信息</a></h3>
+                <div class="number">从业人员招聘求职</div>
+                <i class="left-sort-right" style="display: block;"></i> 
+            </div>
+        </div>
+        <!--浮层--> 
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem">      
+                <dl class="subitem clearfix">
+                    <dd>  
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="5"}
+                        <a class="item inline-block" href="({:URL('index/invite/inviteList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+        <!--/浮层--> 
+    </div>
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_5">
+                <h3><a>物件运输</a></h3>
+                <div class="number">大件、同城</div>
+                <i class="left-sort-right" style="display: block;"></i> 
+            </div>
+        </div>
+        <!--浮层-->
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem"> 
+                <dl class="subitem clearfix">
+                    <dd>  
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="6"}
+                        <a class="item inline-block" href="({:URL('index/article/articleList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+        <!--/浮层--> 
+    </div> 
+    <div class="submenuitem">
+        <div class="subsubmenu">
+            <div class="sort sort_6">
+                <h3><a href="javascript:viod(0)">配件、维修</a></h3>
+                <div class="number">设备配件、五金工具</div>
+                <i class="left-sort-right" style="display: block;"></i> 
+            </div>
+        </div>
+        <div class="product_sort pa" style="display: none;"> 
+            <!--分类-->
+            <div class="sortitem"> 
+                <dl class="subitem clearfix">
+                    <dd>  
+                    {volist name="type" id="vo"}
+                    {eq name="vo.pid" value="7"}
+                        <a class="item inline-block" href="({:URL('index/product/productList')})?type=({$vo.id})">({$vo.content})</a> 
+                    {/eq}
+                    {/volist}
+                    </dd>
+                </dl>
+            </div>
+            <!--/分类--> 
+        </div>
+    </div>
+
+</div> 
+                
+          

@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商家品牌 - ({$system->short}) - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/shangjia.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div class="w">
+    <div class="find-g-left mt30">
+        <div class="find-left-slide">
+            <div class="tempWrap">
+                <ul class="list">
+                    <li><a href="javascript:;"><img src="__INDEX__/picture/sjad.jpg"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="j-findPub" class="g-find-m-pub find-m-pub-2" style="position: relative;">
+            <div class="title">加入战略合作商家享特权！</div>
+            <div class="tip">信息置顶，绝佳广告位展现！</div>
+                <div class="formBox">
+                    <form action="({:URL('index/brand/brandShen')})" method="post">
+                        <table cellspacing="0" cellpadding="0" width="100%" class="table">
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="name" value="" placeholder="您的公司名称" datatype="*2-30"  class="input" style="width:100%"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" style="width:100%" name="catid" value="" placeholder="组织机构代码证号码" class="input_4 j-pubMoney"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select name="adda">
+                                            <option value=''>-- 请选择地区 --</option>
+                                            {volist name="address" id="vo"}
+                                            <option value='({$vo.id})'>- ({$vo.name})-</option>
+                                            {/volist}
+                                        </select>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td><input type="text" style="width:100%" name="yin" value="" placeholder="主营业务" class="input"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" style="width:100%" name="tel" value="" placeholder="联系电话" datatype="m" errormsg="联系电话格式有误" nullmsg="仅限一个电话号码" class="input"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" style="width:100%" name="qqs" value="" placeholder="QQ号码" datatype="n" ignore="ignore" errormsg="QQ号码格式有误" nullmsg="请输入QQ号码" class="input_3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" style="width:100%" name="qqs" value="" placeholder="公司官网：www.xxx.com" datatype="n" ignore="ignore" errormsg="QQ号码格式有误" nullmsg="公司官网" class="input_3"></td>
+                                </tr>
+                                <tr id="j-xuqiu">
+                                    <td><textarea name="desc" style="width:100%" autocomplete="off" value="" placeholder="简单描述您的公司情况" datatype="*2-500" errormsg="需求描述需2-500个字符" nullmsg="请填写需求描述"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn" type="submit" style="width:100%">提交申请等待联系</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="find-m-how">
+                <div class="title">加入战略商家有什么好处</div>
+                <dl class="dl1">
+                    <dt>公信度</dt>
+                    <dd>平台认证真实可信</dd>
+                </dl>
+                    <dl class="dl2">
+                    <dt>展现度</dt>
+                    <dd>广告位推荐展播</dd>
+                </dl>
+                <dl class="dl3">
+                    <dt>保障度</dt>
+                    <dd>服务和能力保障</dd>
+                </dl>
+                <a href="tencent://Message/?Uin=502326263&websiteName=云南掘金汇网络科技有限公司=&Menu=yes" class="btn">立即咨询</a> 
+            </div>
+            <div class="m-guyongstep">
+                <div class="title">
+                    <h4><a title="如何加入战略商家">如何加入</a></h4>
+                    <div class="line2"></div>
+                </div>
+                <ul>
+                    <li class="li1">与掘金汇沟通达成合作</li>
+                    <li class="li2">提交公司资料给我们</li>
+                    <li class="li3">编辑发布开始上线展现</li>
+                </ul>
+            </div>
+            <div class="shop-ad"></div>
+                <div class="m-listText m-listText-2">
+                    <div class="title">
+                        <h4>最新加入商家</h4>
+                        <div class="line3"></div>
+                    </div>
+                    <ul>
+                        {volist name="left_brand" id="vo"}
+                        <li class="f-clearfix">
+                            <a target="_blank" href="http://({$vo.href})">
+                                <img src="__UPLOAD__/({$vo.logo})" class="img" alt="({$vo.name})" title="({$vo.name})">
+                            </a>
+                            <div class="text">
+                                <a target="_blank" href="http://({$vo.href})">({$vo.name})</a> 
+                            </div>
+                        </li>
+                        {/volist}
+                    </ul>
+                    <div class="more">
+                        <a href="tencent://Message/?Uin=({$system->qqs})&websiteName=({$system->name})=&Menu=yes">加入({$system->short})战略商家&gt;</a>
+                    </div>
+                </div>
+                <div class="" id="j-findPubPos"></div>
+            </div>
+            <div class="find-g-right mt30">
+                <div class="find-m-sort">
+                    <dl class="area f-clearfix">
+                    <dt>所在地区：</dt>
+                        <dd> 
+                            {eq name="$adda" value=""}
+                                <li class='active'><a href='({:URL("index/brand/brandList")})' class='on'>全部</a></li>
+                            {volist name="address" id="vo"}
+                                <li><a href="({:URL('index/brand/brandList')})?adda=({$vo.id})">({$vo.short})</a></li>
+                            {/volist}
+                            {else/}
+                                <li class='active'><a href='({:URL("index/brand/brandList")})'>全部</a></li>
+                                {volist name="address" id="vo"}
+                                    {eq name="vo.id" value="$adda"}
+                                    <li><a href="({:URL('index/brand/brandList')})?adda=({$vo.id})" class="on">({$vo.short})</a></li>
+                                    {else/}
+                                    <li><a href="({:URL('index/brand/brandList')})?adda=({$vo.id})">({$vo.short})</a></li>
+                                    {/eq}
+                                {/volist}
+                            {/eq}
+                        </dd>
+                    </dl>
+                </div>
+                <div class="find-listTab find-listTab-2 f-clearfix">
+                    <div class="listBox">
+                        <div class="listWrap f-clearfix">
+                            <div class="find-m-list">
+                                <ul class="itemUl">
+                                    {volist name="list" id="vo"}
+                                    <li class="item  f-clearfix">
+                                        <div class="listLeft"> 
+                                            <a href="http://({$vo.href})" target="_blank" title="({$vo.href})">
+                                                <img src="__UPLOAD__/({$vo.logo})" onerror="this.src='/Templates/jjh/images/touxiang2.png'" class="img"> 
+                                                <span >查看官网</span> 
+                                            </a> 
+                                        </div>
+                                        <div class="listRight">
+                                            <div class="contact">
+                                                <ul>
+                                                    <li class="li1">
+                                                        <img src="__INDEX__/picture/shangpu.png">
+                                                        <a target="_blank" href="http://({$vo.href})" data="9632" title="">&nbsp;查看官网</a>
+                                                    </li>
+                                                    <li class="li2">
+														<a href="http://wpa.qq.com/msgrd?v=3&uin=({$vo.qqs})&site=http://www.chuangyimao.com/&menu=yes" target="_blank" rel="nofollow">
+                                                            <img border="0" src="__INDEX__/picture/qq.png" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+                                                        </a>&nbsp;
+                                                        <a href="http://wpa.qq.com/msgrd?v=3&uin=({$vo.qqs})&site=http://www.chuangyimao.com/&menu=yes" target="_blank" rel="nofollow">在线交谈</a>
+                                                    </li>
+                                                </ul>
+                                                <!--<p class="view">已有<span class="s-red">1807</span>人浏览</p>-->
+                                            </div>
+                                            <div class="name">
+                                                <a target="_blank" href="javascript:void(0)">({$vo.name})</a>
+                                                <span class="f-pl10"></span>
+                                            </div>
+                                            <div class="level">
+                                                <a><img src="__INDEX__/picture/icon3.jpg" alt="已实名认证" title="已实名认证"></a>&nbsp;
+                                                <img src="__INDEX__/picture/company.png" title="公司服务商"> 
+                                            </div>
+                                            <div class="zhuying clearfix">
+                                                <span class="f-left">主营：({$vo.yin})<br />电话：({$vo.tel})<br />地区：({$vo.addressadda.name})</span>
+                                            </div>
+                                        </div>
+                                        <div class="text clearfix">简介：
+                                            <a href="/content/?6180.html" rel="nofollow" target="_blank">
+                                                <span class="s-gray98">({$vo.desc})</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                                <div class="clear"></div>
+                                <div class="m-pages f-tr">
+                                <!-- 分页-->
+                                <div style="width:100%;text-align:center;">
+                                ({$list->render()}) 
+                                </div>
+                                <style type="text/css">
+                                 .pagination{
+                     width:100%;
+                    text-align: right;
+                    margin-top:10px;
+                }
+                .pagination li{
+                    float: left;
+                    width:25px;
+                    height:25px;
+                    line-height: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    border: 1px solid #00A3D9;
+                    margin-left: 5px;
+                    color:#666;
+                }
+            </style>
+            <!-- /分页 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="clear"></div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>

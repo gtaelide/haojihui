@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>({$system->short})-({$show->title})-({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <link href="__INDEX__/css/sb.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="clearfix">
+    <div id="where_nav">
+        <a href="../">首页</a>  
+        <span>&gt;</span> 
+        <a href="/list/?14_1.html">设备材料</a> 
+        <span>&gt;</span> 
+        <a href="/list/?5_1.html">({$show->type->content})</a>
+        <span>&gt;</span> 
+        <strong>({$show->title})</strong>
+    </div>
+    <div id="content2" class="equipContent">
+        <div class="nr">
+            <div class="mainTitle">
+                <h1>({$show->title})</h1>
+                <p class="info"> 
+                    <span class="view"><em>发布时间；({$show->createtime})</em></span> 
+                    <span class="view"><em>浏览次数：({$show->nums})</em> </span> 
+                </p>
+                <a href="javascript:void(0)" onclick="shoucang(document.title,window.location)" class="btn_fav">收藏信息</a>
+                <div id="bdshare"  class="bdsharebuttonbox"> 
+                    <span class="bds_more">分享到：</span>
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a> 
+                </div>
+            </div>
+            <div class="equipInfo clearfix">
+                <div class="galleryBox clearfix">
+                    <a href="javascript:void(0)" target="_blank">
+                        <img src="__UPLOAD__/({$show->img})" alt="({$show->title})" width="100%" height="280" />
+                    </a>
+                </div>
+                <ul class="infoList">
+                    <li>
+                        <label>产品名称：</label>
+                        <span><i>({$show->title})</i></span>
+                    </li>
+                    {eq name="show->type->allow" value="3"}
+                    <li>
+                        <label>所属类型：</label>
+                        <span><i>租赁</i></span>
+                    </li>
+                    {else/}
+                    <li>
+                        <label>所属类型：</label>
+                        <span><i>出售</i></span>
+                    </li>
+                    {/eq}
+                    <li>
+                        <label>所属分类：</label>
+                        <span><i>({$show->type->content})</i></span>
+                    </li>
+                    <li>
+                        <label>品牌型号：</label>
+                        <span><i>({$show->brand})</i></span>
+                    </li>
+                    {eq name="show->type->allow" value="3"}
+                    <li>
+                        <label>租赁时间：</label>
+                        <span><i>({$show->long}) 天</i></span>
+                    </li>
+                    {else/}
+                    {/eq}
+                    <li>
+                        <label>价&nbsp;&nbsp;格：</label>
+                        <span><i style="color:#FF5C26">￥({$show->price|number_format})</i></span>
+                    </li>
+                    <li class="infoAction">
+                        <a class="btn_contact" id="btn_contact" href="({:url('index/product/productCatid')})?id=({$show->id})"><h2>购买</h2></a>
+                    </li>
+                </ul>
+                <div class="fr">
+                    <div class="erweima">
+                        <img src="__UPLOAD__/({$system->img})" alt="微信" />
+                        <p>扫一扫分享该信息到手机端</p>
+                        <p>(微信、QQ空间等客户端)</p>
+                        <p>({$system->short})助力您提升掌上商机！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="detailMain">
+                <div class="detailNav">
+                    <ul>
+                        <li class="current"><a href="javascript:void(0)" class="ico_detail">产品内容</a></li>
+                    </ul>
+                </div>
+                <div class="detailContent" style="display:block;">
+                    <div class="contentInfo">
+                    	  <ul>
+                        	  <li><label>品牌型号：</label>({$show->brand})</li>
+                            <li><label>产品分类：</label>({$show->type->content})</li>
+                            <li><label>产品编号：</label>({$show->asid})</li>
+                        </ul>
+                    </div>
+                    <div class="contentMain">
+                        <div class="moreContent">
+                            <h3 class="title">产品详情</h3>
+                            <div class="content3"> 
+                                <p>
+                                ({$show->content})
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="product/right" /}
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+<script>
+  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

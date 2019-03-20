@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>信息发布 - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/info_pub.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+    <style type="text/css">
+        .content_window{
+            background:url(__INDEX__/images/userbg.jpg) no-repeat right bottom;
+            width:100%;
+        }
+        .content_child{
+            width:100%;
+        }
+        .content_child ul{
+            font-size:17px;
+            margin-left:10px;
+            width:100%;
+        }
+        .content_child li{
+            margin-left:70px;
+            float: left;
+            border: 1px solid #ccc;
+            height:30px;
+            line-height: 30px;
+            width:180px;
+            text-align: center;
+            background-color:#3299cc;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /} 
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="infoPub">
+    <div id="content" style="width:850px;">
+        <div class="nr_text content_window" >
+            <div class="content_child">
+                <ul>
+                    <li><a href="({:URL('index/user/showMake')})?choose=1">我的供求信息</a></li>
+                    <li><a href="({:URL('index/user/showMake')})?choose=3">我的工程人员信息</a></li>
+                    <li><a href="({:URL('index/user/showMake')})?choose=2">我的工程项目信息</a></li>
+                </ul>
+            </div>
+            <div style="clear:both;"></div>
+            <hr style="width:100%;margin-left:10px;background-color:#ccc" />
+            <table border="0" cellpadding="2" cellspacing="0" align="center" width="100%" style="margin-top:0px;">
+                <tr>
+                    <td height="45" colspan="4" align="center">
+                        <span style="color:#F00; padding-left:40px; font-size:18px; font-weight:bold; font-family:'微软雅黑'">
+                            {switch name="info"}
+                                {case value="1"}我的供求信息{/case}
+                                {case value="2"}我的工程人员信息{/case}
+                                {default/}我的工程项目信息
+                            {/switch}
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="" style="margin-left: 10px;">
+                <ul>
+                    {volist name="list" id="vo"}
+                    <li style="height: 40px;line-height: 40px;border-bottom: #ccc dashed 1px;font-size: 15px;">
+                        <a href="({:URL('index/user/showMake1')})?choose=({$choose})&id=({$vo.id})" style="color:#666">({$vo.title})</a>
+                        <span style="float: right;font-size: 14px;color:#aaa">({:date('Y-m-d',strtotime($vo.createtime))})
+                        </span>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div> 
+    <div id="sidebar">
+        <dl class="contact">
+            <dt>QQ在线客服</dt>
+            <dd>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=qq&amp;menu=yes" class="btn_qq"><i></i>({$system->qqs})</a>
+            </dd>
+            <dt>服务热线</dt>
+            <dd><em class="phone">({$system->tel})</em></dd>
+            <dt>({$system->short})公众号 </dt>
+            <dd class="QR_wx">
+                <a href="../about/?317.html"><img src="__UPLOAD__/({$system->img})" alt="掘金汇app客户端"></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+
+</html>
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.config.1.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>

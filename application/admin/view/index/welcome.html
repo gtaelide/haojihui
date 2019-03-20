@@ -1,0 +1,153 @@
+{include file='public/meta' /}
+<title>后台管理系统 - 我的桌面</title>
+</head>
+<body>
+<div class="page-container">
+	<p class="f-20 text-success">({$system->name})后台管理系统 <span class="f-14"></span>！</p>
+	<p>登录次数：({$adminss->nums}) </p>
+	<p>登录IP：({$cip})  上次登录时间：({$adminss_logintime})</p>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">信息统计</th>
+			</tr>
+			<tr class="text-c">
+				<th>统计</th>
+				<th>供求信息库</th>
+				<th>产品信息库</th>
+				<th>工程信息库</th>
+				<th>管理员</th>
+				<th>会员</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c">
+				<td>总数</td>
+				<td>({$art_new_all})</td>
+				<td>({$art_pro_all})</td>
+				<td>({$engineer_ss_all})</td>
+				<td>({$admin_ss_all})</td>
+				<td>({$user_ss_all})</td>
+			</tr>
+			<tr class="text-c">
+				<td>今日</td>
+			    <td>({$art_new_today})</td>
+				<td>({$art_pro_today})</td>
+				<td>({$engineer_ss_today})</td>
+				<td>({$admin_ss_today})</td>
+				<td>({$user_ss_today})</td>
+			</tr>
+			<tr class="text-c">
+				<td>昨日</td>
+				<td>({$art_new_yes})</td>
+				<td>({$art_pro_yes})</td>
+				<td>({$engineer_ss_yes})</td>
+				<td>({$admin_ss_yes})</td>
+				<td>({$user_ss_yes})</td>
+			</tr>
+			<tr class="text-c">
+				<td>本周</td>
+				<td>({$art_new_week})</td>
+				<td>({$art_pro_week})</td>
+				<td>({$engineer_ss_week})</td>
+				<td>({$admin_ss_week})</td>
+				<td>({$user_ss_week})</td>
+			</tr>
+			<tr class="text-c">
+				<td>本月</td>
+				<td>({$art_new_month})</td>
+				<td>({$art_pro_month})</td>
+				<td>({$engineer_ss_month})</td>
+				<td>({$admin_ss_month})</td>
+				<td>({$user_ss_month})</td>
+			</tr>
+			<tr class="text-c">
+				<td>今年</td>
+				<td>({$art_new_year})</td>
+				<td>({$art_pro_year})</td>
+				<td>({$engineer_ss_year})</td>
+				<td>({$admin_ss_year})</td>
+				<td>({$user_ss_year})</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-border table-bordered table-bg mt-20">
+		<thead>
+			<tr>
+				<th colspan="2" scope="col">服务器信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th width="30%">平台名称</th>
+				<td><span id="lbServerName">({$system->name})</span></td>
+			</tr>
+			<tr>
+				<td>服务器IP地址</td>
+				<td>({$_SERVER['SERVER_ADDR']})</td>
+			</tr>
+			<tr>
+				<td>服务器域名</td>
+				<td>({$system->domian})</td>
+			</tr>
+			<tr>
+				<td>服务器端口 </td>
+				<td>({$_SERVER["SERVER_PORT"]})</td>
+			</tr>
+			
+			<tr>
+				<td>本文件所在文件夹 </td>
+				<td>{php}echo dirname(__FILE__);{/php}</td>
+			</tr>
+			<tr>
+				<td>服务器操作系统 </td>
+				<td>{php} echo PHP_OS; {/php}</td>
+			</tr>
+			<tr>
+				<td>最大执行时间： </td>
+				<td>{php} echo get_cfg_var("max_execution_time")."秒 ";  {/php}</td>
+			</tr>
+			<tr>
+				<td>脚本运行占用最大内存： </td>
+				<td>{php}echo get_cfg_var ("memory_limit")?get_cfg_var("memory_limit"):"无";{/php}</td>
+			</tr>
+			<tr>
+				<td>服务器的语言种类 </td>
+				<td>Chinese (People's Republic of China)</td>
+			</tr>
+			<tr>
+				<td>脚本语言 </td>
+				<td>php</td>
+			</tr>
+			<tr>
+				<td>服务器当前时间 </td>
+				<td>2014-6-14 12:06:23</td>
+			</tr>
+			<tr>
+				<td>当前Session数量 </td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>当前SessionID </td>
+				<td>({$aid})</td>
+			</tr>
+			<tr>
+				<td>当前系统用户名 </td>
+				<td>({$admin})</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+<footer class="footer mt-20">
+	<div class="container">
+		<p>
+			Copyright &copy;2015-202 H-ui.admin v3.1 All Rights Reserved.<br>
+			本后台系统由<a href="javascript:viod(0)" target="_blank" title="技术支持">昆明天牛科技有限公司</a>提供技术支持</p>
+	</div>
+</footer>
+<script type="text/javascript" src="__ROUTE__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__ROUTE__/static/h-ui/js/H-ui.min.js"></script> 
+
+</body>
+</html>

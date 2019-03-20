@@ -1,0 +1,70 @@
+<div class="pr" >
+    <div class="header_bg"></div>
+    <div class="header">
+        <div class="content pr">
+            <div class="top">
+                <div class="fl"><a href="" target="_blank"></a>全国服务热线：({$system->tel})　({$system->name})</div>
+                <div class="top_left">
+                    <ul class="other">
+                        <li>
+                            <a href="tencent://Message/?Uin=({$system->qqs})&websiteName==&Menu=yes">
+                                <i class="icon icon_chat"></i>客服
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="user_info">
+                        {eq name="user_name" value=""}
+                        <div class="top_l">
+                            <a href="({:url('index/user/login')})"><span>登录</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="({:url('index/user/register')})"><span>注册</span></a>&nbsp;&nbsp;&nbsp;
+                        </div>
+                        {else/}
+                        <div class="top_l" style="color:red">
+                            <a href="javascript:viod(0);"><span>您好 &nbsp;,&nbsp;&nbsp; 欢迎回来</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:viod(0);"><span>({$user_name})</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="({:URL('index/user/show')})" style="color:#999"><span>修改信息</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="({:URL('index/user/showCatid')})" style="color:#999"><span>查看订单</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="({:URL('index/user/showMake')})" style="color:#999"><span>我的发布</span></a>&nbsp;&nbsp;&nbsp;
+                            <a href="({:URL('index/user/loginOut')})" style="color:#999"><span>退出登录</span></a>&nbsp;&nbsp;&nbsp;
+                        </div>
+                        {/eq}
+                    </ul>
+                    <style type="text/css">
+                        .top_l a:hover{
+                            color:#FF9326;
+                        }
+                    </style>
+                    <label><span class="top_triangle"></span></label>
+                </div>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+        <div class="content logo_content fm"> 
+            <a href="../">
+                <img src="__UPLOAD__/({$system->logo})" class="logo" alt="({$system->name})">
+            </a>
+            <div class="city_choose"> 
+                <span class="logo_span"></span>
+                <a class="change_city"><!-- 版本 --></a> 
+            </div>
+            <div class="topr" style="float:right;">
+                <form action="({:url('index/article/search')})" method="get" name="meform">
+                    <div class="search_content" style="left: 0;border-color:#3299cc;" > 
+                        <img src="__INDEX__/picture/search_icon.png" />
+                        <input name="keys" value="" type="text" placeholder="请输入关键词搜索　如：chache" x-webkit-speech="" lang="zh-CN" style="width: 220px ;color: rgb(102, 102, 102);">
+                        <span>
+                            <input type="submit" class="search_btn" value="搜索" style="background-color:#3299cc;"/></span>
+                    </div>
+                    <a href="({:url('index/user/make1')})" class="btn_release issueRequirement" id="issueRequirement" style="background-color:#ff7f00">信息发布</a>
+                </form>
+                <div class="fr code mobile-code" style="margin-right:20px">
+                    <a href="javascript:viod();" target="_blank" style="display:block;margin-bottom:10px">
+                        <img src="__UPLOAD__/({$system->img})" alt="微信二维码" width="80px">
+                    </a> 
+                    <span>扫一扫关注我们</span>
+                </div>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>供求信息-云南工程机械行业服务平台</title>
+    <meta name="Keywords" content="" >
+    <meta name="Description" content="" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/infolist.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+<body>
+{include file="public/top"/}
+<div class="navbar" id="navBar" style="position: relative;z-index:13;">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div id="wrapper" class="infoList">
+	  <div id="info_filter" class="condition">
+    	  <div id="where_nav"><a href="../">首页</a>  <span>></span> <a href="/list/?14_1.html">产品信息</a></div>
+    	  <div class="IsuLib-SearchForm">
+            <div class="sf-row">
+                <div class="sf-label">产品分类</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        {switch name="$pid"}
+                        {case value="1"}
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?date=({$url_date})">全部</a></li>
+                            <li><a class="on" href="({:URL('index/product/productList')})?pid=1&date=({$url_date})">机械租赁</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=2&date=({$url_date})">机械买卖</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=3&date=({$url_date})">建筑材料</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=7&date=({$url_date})">配件、五金</a></li>
+                        {/case}
+                        {case value="2"}
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?date=({$url_date})">全部</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=1&date=({$url_date})">机械租赁</a></li>
+                            <li><a class="on" href="({:URL('index/product/productList')})?pid=2&date=({$url_date})">机械买卖</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=3&date=({$url_date})">建筑材料</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=7&date=({$url_date})">配件、五金</a></li>
+                        {/case}
+                        {case value="3"}
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?date=({$url_date})">全部</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=1&date=({$url_date})">机械租赁</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=2&date=({$url_date})">机械买卖</a></li>
+                            <li><a class="on" href="({:URL('index/product/productList')})?pid=3&date=({$url_date})">建筑材料</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=7&date=({$url_date})">配件、五金</a></li>
+                        {/case}
+                        {case value="7"}
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?date=({$url_date})">全部</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=1&date=({$url_date})">机械租赁</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=2&date=({$url_date})">机械买卖</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=3&date=({$url_date})">建筑材料</a></li>
+                            <li><a class="on" href="({:URL('index/product/productList')})?pid=7&date=({$url_date})">配件、五金</a></li>
+                        {/case}
+                        {default/}
+                            <li><a class="on" href="({:URL('index/product/productList')})?date=({$url_date})">全部</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=1&date=({$url_date})">机械租赁</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=2&date=({$url_date})">机械买卖</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=3&date=({$url_date})">建筑材料</a></li>
+                            <li><a class="gwt-Anchor" href="({:URL('index/product/productList')})?pid=7&date=({$url_date})">配件、五金</a></li>
+                        {/switch}
+                    </ul>
+                </div>
+            </div>
+            <div class="sf-row">
+                <div class="sf-label">上架时间</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        <li>
+                             {switch name="$url_date"}
+                            {case value="today"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today' class="on">今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday' >昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week' >本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="yesterday"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday' class="on">昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week' >本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="week"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week' class="on">本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last week"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'class="on">上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="month"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month' class="on">本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last month"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month' class="on">上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="year"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year' class="on">今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last year"}
+                            <li class='active'><a href='({:URL("index/product/productList")})'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year'>今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year' class="on">去年</a></li></li>
+                            {/case}
+                            {default /}
+                            <li class='active'><a href='({:URL("index/product/productList")})' class='on'>全部</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=year'>今年</a></li>
+                            <li><a href='({:URL("index/product/productList")})?pid=({$pid})&date=last year'>去年</a></li>
+                            {/switch} 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+	<div id="main2">
+    	    <div class="infoTitle">
+        	    <ul class="nav">
+            	    <li class="firstChild current">
+            		    <a href="/list/?14_1.html">所有产品信息</a>
+            	    </li>
+                    <!--
+                    <li class="totalCount">
+                    <div class="search">
+	                    <form action="/search.asp" method="get">
+	                	    <input name="keys" type="text" value="" class="inputKeyword" placeholder="输入关键词搜索">
+	                	    <input type="submit" class="btn_search" value="搜索">
+	                    </form>
+                    </div>
+                </li>
+            -->
+            </ul>
+        </div>
+        <div class="infoListMain">
+            <ul class="list" >
+        	    {volist name="list" id="vo"}
+                <li style="width:200px;height:300px;float:left;margin-left:28px;margin-top:20px;border:1px solid #eee;">
+                    <div style="width:100%">
+                        <a href="({:URL('index/product/productShow')})?id=({$vo.id})">
+                            <img src="__UPLOAD__/({$vo.img})" alt="({$vo.title})" width="200px" height="200px" title="({$vo.title})"/>
+                        </a>
+                    </div>
+                    <div style="width:100%;padding:10px;">
+                        <p style="font-size:15px;color:#FF5C26;width:100%;">￥({$vo.price|number_format})</p>
+                        <br/> 
+                        <p style="font-size:13px;">({$vo.title})</p>    
+                    </div>  
+                </li>
+                {/volist}
+            </ul>
+
+        </div>
+        <div style="clear:both;"></div>
+                                <!-- 分页-->
+            <div style="width:100%;text-align:center;">
+                 ({$list->render()}) 
+            </div>
+            <style type="text/css">
+                .pagination{
+                    width:100%;
+                    text-align: right;
+                    margin-top:10px;
+                }
+                .pagination li{
+                    float: left;
+                    width:25px;
+                    height:25px;
+                    line-height: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    border: 1px solid #00A3D9;
+                    margin-left: 5px;
+                    color:#666;
+                }
+            </style>
+            <!-- /分页 -->
+    </div>
+    {include file="product/right" /}
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>

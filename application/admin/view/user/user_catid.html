@@ -1,0 +1,106 @@
+{include file='public/meta' /}
+<title>分类管理</title>
+</head>
+<body>
+
+<div class="pd-20 text-c">
+  <form class="Huiform" action="/" method="post" id="myform">
+    分类查询：
+   <select class="input-text" id="sel_Sub" name="typeid" onchange="SetSubID(this);" style="width:200px;">
+    
+          <option value="1">已发货</option>
+          <option value="1">未发货</option>
+          <option value="1">已确认</option>
+
+    </select>
+    <input type="hidden" id="hid_ccid" value="" >
+    <input class="input-text" style="width:250px" type="text" value="" placeholder="输入订单号" id="article-class-val" name="content"/>
+    <button type="button" class="btn btn-success" id="" name="" onClick="type_add()" style="margin-left:10px;"><i class="icon-plus"></i> 查询</button>
+  </form>
+  <div class="article-class-list cl mt-20">
+    <table class="table table-border table-bordered table-hover table-bg">
+      <thead>
+        <tr class="text-c">
+          <th width="25">ID</th>
+          <th width="80">产品名称</th>
+          <th width="80">订单编号</th>
+          <th>购买时间</th>
+          <th width="100">价格</th>
+          <th width="80">收货人</th>
+          <th width="100">收货电话</th>
+          <th width="100">状态</th>
+        </tr>
+      </thead>
+      <tbody>
+      {volist name="list" id="vo"}
+        <tr class="text-c">
+          <td>({$vo.id})</td>
+          <td>({$vo.product.title})</td>
+          <td>({$vo.bian})
+          </td>
+          <td>({$vo.createtime})</td>
+          <td class="text-l">
+              <span style="color:red">￥({$vo.price})</span> 
+          </td>
+          <td>({$vo.name})</td>
+          <td>({$vo.tel})</td>
+          <td class="f-14">
+            {eq name="vo.status" value="0"}
+               <span style="color:red">未发货</span>
+            {else/}
+               <span style="color:green">已发货</span>
+            {/eq}
+          </td>
+        </tr>
+       {/volist}
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+{include file='public/footer' /}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+/*管理员-删除*/
+function type_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:'id='+id,
+			url: '({:URL("admin/invite/inviteTypeDel")})',
+			cache:false,
+			success: function(data){
+				var parsedJson = evel("("+data+")");
+			　　 if(parsedJson.stuats == 0){
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			　　 }else{
+				   $(obj).parents("tr").remove();
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			    }
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+function type_add(obj){
+	layer.confirm('确认要添加吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:$('#myform').serialize(),
+			url: '({:URL("admin/article/articleTypeAdd")})',
+			cache:false,
+			success: function(data){
+				 layer.msg('已添加!',{icon:1,time:1000});
+         location.reload();
+			},
+			error:function(data) {
+				 console.log(data.msg);
+			},
+		});		
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 确保适当绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 禁止用户缩放网页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <!-- SEO友好提示-->
+	<meta charset="UTF-8">
+	<title>({$system->name}) - 首页</title>
+	<link rel="stylesheet" href="__BOOT__/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__BOOT__/slide/css/default.css">
+    <link rel="stylesheet" href="__BOOT__/slide/css/jquery.hiSlider.min.css">
+	<script src="__BOOT__/js/bootstrap.min.js"></script>
+    <script src="__BOOT__/js/jquery-3.3.1.min.js"></script>
+	<style>
+        body ul{
+            margin: 0px;
+     	    padding: 0px;
+        	font-size: 14px;
+        }
+        ul{
+      	    list-style-type: none;
+        }
+        a{
+     	      text-decoration: none;
+        }
+        .mian{
+         	  width: 100%;
+        }
+        #wrap li{
+            list-style: none;
+        }
+        #wrap li img{
+            display: block;
+            margin: 0 auto;
+        }
+        #wrap{
+            width: 80%;
+            min-width: 300px;
+            margin: 10px auto 80px;
+            background: #fefefe;
+        }
+        .hiSlider{
+            overflow: hidden;
+            height: 280px;
+            width: 500px;
+            background: #eee;
+        }
+        .hiSlider-item{
+            float: left;
+        }
+	</style>
+</head>
+<body style="position:relative">
+    <!-- 顶部 -->
+    {include file="public/top" /}
+    <!-- /顶部 -->
+    <div class="top" style="width:100%;height:50px;line-height:50px;position:relative;margin-top:40px;">
+        <!-- 广告 -->
+        <div style="background-color:#eee;width:100%;height:200px" >
+            <div id="wrap" style="width:100%;height: 200px;overflow: hidden;" >
+                <ul class="hiSlider hiSlider3" >
+                    {volist name="img" id="vo"}
+                    <li class="hiSlider-item"><img src="__UPLOAD__/({$vo.img})" alt="({$vo.title})" width="100%"></li>
+                    {/volist}
+                </ul>
+            </div>
+            <script src="__BOOT__/slide/js/jquery.1.9.1.js"></script>
+            <script src="__BOOT__/slide/js/jquery.hiSlider.min.js"></script>
+            <script>
+                $('.hiSlider1').hiSlider();
+                $('.hiSlider2').hiSlider({
+                    isFlexible: true,
+                    mode: 'fade',
+                    isSupportTouch: false,
+                    isShowTitle: false,
+                    isShowPage: false,
+                    titleAttr: function(curIdx){
+                        return $('img', this).attr('alt');
+                    }
+                });
+                $('.hiSlider3').hiSlider({
+                    isFlexible: true,
+                    isSupportTouch: true,
+                    titleAttr: function(curIdx){
+                        return $('img', this).attr('alt');
+                    }
+                });
+                $('.hiSlider4').hiSlider({
+                    startSlide: 2,
+                    direction: 'top'
+                });
+            </script>  
+        </div>
+        <!-- /广告 -->
+        <div class="container" style="margin-top:20px;">
+            <ul class="row">
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/product/lists')})?choose=2"><img src="__INDEX__/ico/1.png" alt="" width="70%"></a><br>
+                    <span>设备租赁</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/product/lists')})?choose=1"><img src="__INDEX__/ico/3.png" alt="" width="70%"></a><br>
+                    <span>设备买卖</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/article/lists')})?choose=5"><img src="__INDEX__/ico/4.png" alt="" width="70%"></a><br>
+                    <span>人员信息</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/article/lists')})?choose=6"><img src="__INDEX__/ico/5.png" alt="" width="70%"></a><br>
+                    <span>物件运输</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/product/lists')})?choose=3"><img src="__INDEX__/ico/2.png" alt="" width="70%"></a><br>
+                    <span>建筑材料</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/Engineer/lists')})"><img src="__INDEX__/ico/7.png" alt="" width="70%"></a><br>
+                    <span>工程招投标 </span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/index/pages')})?id=10"><img src="__INDEX__/ico/5.fw.png" alt="" width="70%"></a><br>
+                    <span>招商合作</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/article/lists')})?choose=4"><img src="__INDEX__/ico/9.png" alt="" width="70%"></a><br>
+                    <span>工程信息</span>
+            	</li>
+            	<li class="col-xs-4" style="text-align:center">
+                    <a href="({:URL('wap/article/lists')})?choose=8"><img src="__INDEX__/ico/8.png" alt="" width="70%"></a><br>
+                    <span>其他信息</span>
+            	</li>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <!--产品中心-->
+        <div style="width:100%;height:30px;background-color:#3299cc; margin-top:10px;" class="container">
+            <ul class="row">
+                <li class="col-xs-10">
+                    <span style="font-size:14px;color:#fff;float:left;margin-top:-10px;margin-left:50%;">产品中心</span>
+                </li>
+                <li class="col-xs-2">
+                    <a href="({:URL('wap/product/lists')})"><span style="font-size:12px;color:#fff;float:right;margin-top:-10px;">更多</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /产品 -->
+        <!--产品展示-->
+        <div class="container" style="margin-top:20px;">
+            <ul class="row">
+                {volist name="article" id="vo"}
+                    {eq name="vo.price" value=""}
+                    {else/}
+                    <li class="col-xs-4" style="text-align:center;height:180px;overflow: hidden;">
+                    <a href="({:URL('wap/product/show')})?id=({$vo.id})" style="display:block;height:170px; overflow: hidden;"><img src="__UPLOAD__/({$vo.img})" alt="" width="80%"><br>
+                        <span title="({$vo.title})" style="color:#888">({:mb_substr($vo.title,0,6,'utf-8')})</span>
+                    </a>
+                    
+                    </li>
+                    {/eq}
+                {/volist}
+            </ul>
+        </div>
+        <!--产品展示-->
+        <!--资讯新闻-->
+           <div style="width:100%;height:30px;background-color:#3299cc; margin-top:10px;" class="container">
+            <ul class="row">
+                <li class="col-xs-10">
+                    <span style="font-size:14px;color:#fff;float:left;margin-top:-10px;margin-left:50%;">资讯新闻</span>
+                </li>
+                <li class="col-xs-2">
+                    <a href="({:URL('wap/index/lists')})"><span style="font-size:12px;color:#fff;float:right;margin-top:-10px;">更多</span>
+                        </a>
+                </li>
+            </ul>
+        </div>
+        <style type="text/css">
+            .t1 tr{
+                border-bottom-style:dashed;
+                border-width:1px; 
+                border-color:#000000;
+                height: 30px;
+                line-height:30px;
+            }
+        </style>
+        <div class="container">
+            <table style="width:100%;font-size:14px;padding:0;" class="t1">
+                {volist name="news" id="vo"} 
+                <tr>
+                    <td align="left"><a href="({:url('wap/index/show')})?id=({$vo.id})" style="color:#666">({:mb_substr($vo.title,0,24,'utf-8')})</a></td>
+                    <td align="right" style="color:#aaa">({:date('Y-m-d',strtotime($vo.createtime))})</td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <!--资讯新闻-->
+        <!--关于我们-->
+        <div style="width:100%;height:30px;background-color:#3299cc; margin-top:10px;" class="container">
+            <ul class="row">
+                <li class="col-xs-9">
+                    <span style="font-size:14px;color:#fff;float:left;margin-top:-10px;margin-left:60%;">关于我们</span>
+                 </li>
+                <li class="col-xs-3">
+                    <a href="({:URL('wap/index/pages')})?id=1"><span style="font-size:12px;color:#fff;float:right;margin-top:-10px;">查看详情</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <ul class="row about">
+                <li class="col-xs-11" style="margin-top:20px;">
+                    <span style="font-size:12px;line-height:20px;">({$about->content})</span>
+                </li>
+            </ul>
+        </div>
+        <style type="text/css">
+            .about{
+
+            }
+            .about img{
+                width: 100%;
+            }
+        </style>
+        <!-- 关于我们 -->
+        <!--版权信息-->
+        <div style="height:310px;background-color:#3299cc" class="container">
+            <ul class="row">
+                <li  class="col-xs-6"><img src="__INDEX__/ico/hjh.png" alt="" width="100%;" ></li>
+                <li class="col-xs-6">
+                    <span style="font-size:13px;color:#fff;margin-right:80px;">联系电话：({$system->tel})  
+                        <a href="Tel:({$system->tel})" style="color:#fff;">点击拨号</a>
+                    </span>
+                </li>
+            </ul>
+            <hr style="size:1px;color:#fff;">
+            <div style="text-align: center;padding-top:0px;">
+                <span style="font-size:13px;color:#fff;display: block;">&copy;版权归&nbsp;({$system->principal})</span>
+                <span style="font-size:13px;color:#fff;display: block;">备案号：({$system->icp})</span>
+                <span style="font-size:13px;color:#fff;display: block;">技术支持：昆明天牛科技公司</span>
+            </div>
+        </div>
+<!--版权信息-->
+    </div>
+    <!-- 底部 -->
+    {include file="public/footer" /}
+    <!-- 底部 -->
+</body>
+</html>
+
+

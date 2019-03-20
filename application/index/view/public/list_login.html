@@ -1,0 +1,62 @@
+        {eq name="user_name" value=""}
+        <div style="width:100%;margin-bottom:10px">
+            <div style="background-color:#3299cc;height: 40px;line-height: 40px;text-align: center; color:#fff;font-family: '文华中宋';font-size: 18px;"><span><a href="({:URL('index/user/make')})">发布供求信息</a></span></div>
+            <div style="font-size:16px;color:#666;border:1px solid #ccc;padding-top:20px;padding-bottom:20px;">
+
+                <form action="({:URL('index/user/loginOk')})" method="post">
+                    <table border="0px" cellpadding="0px" cellspacing="0px" width="100%" style="margin-left:5px;">
+                        <tr>
+                            <td width="70" height="40"><label for="username">登录名：</label></td>
+                            <td><input type="text" style="width:150px;height:30px;background-color:#eee;border:1px solid #ccc;" id="username" name="username"/></td>
+                        </tr>
+                        <tr>
+                            <td width="70" height="40"><label for="password">密&nbsp;码:</label></td>
+                            <td><input type="password" style="width:150px;height:30px;background-color:#eee;border:1px solid #ccc;" id="password" name="password"/></td>
+                        </tr>
+                        <tr>
+                            <td width="70" height="40"><label for="code">验证码:</label></td>
+                            <td>
+                                <input type="text" style="width:60px;height:30px;background-color:#eee;border:1px solid #ccc;" name="code"/>
+                                <span style="margin-top:5px;"><img src="({:captcha_src()})" alt="" width="90px" /></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="float:left;margin-left:50px;margin-top:10px;">
+                        <input type="submit" name="" value="登 录" style="color:#fff;width:50px;height:30px;line-height:30px;text-align:center;background-color:#3299cc;border:1px #00A3D9 solid;font-family:'华文中宋';cursor:pointer;"/>
+                    </div>
+                    <div style="float:left;margin-left:50px;margin-top:10px;">
+                        <a href="({:url('index/user/register')})" style="color:#fff;background-color:#ff7f00;display:block;width:50px;text-align:center;height:30px;line-height:30px;font-family:'华文中宋'">注 册</a>
+                    </div>
+                    <div style="clear:both;"></div>
+                </form>
+
+            </div>
+        </div>
+        {else/}
+        <div style="width:100%;margin-bottom:10px;height:250px;">
+            <div style="background-color:#3299cc;height: 40px;line-height: 40px;text-align: center; color:#fff;font-family: '文华中宋';font-size: 18px;">
+                <span><a href="({:URL('index/user/make1')})">发布供求信息</a></span>
+            </div>
+            <div style="font-size:16px;color:#666;border:1px solid #ccc;padding-top:20px;padding-bottom:20px;height:150px;font-size:14px;">
+                <dl class="login_dl" style="height:100px;">
+                    <dd style="margin-left:10px;">
+                        <span>用户名：</span>
+                        <span style="font-size:20px;color:blue;">({$user_name})</span>
+                    </dd>
+                    <dd style="margin-top:20px;margin-left:5px;"> 
+                        <a href="({:URL('index/user/show')})"><span style="margin-left:5px">用户中心</span></a>
+                        <a href="({:URL('index/user/showCatid')})"><span style="margin-left:5px">查看订单</span></a>
+                        <a href="({:URL('index/user/show')})"><span style="margin-left:5px">修改资料</span></a>
+                    </dd>
+                    <i id="loginError"></i>
+                </dl>
+                <div class="loginBnt" style="margin-top:-15px">
+                   <div style="width:100%;text-align:center;">
+                   <a href="({:URL('index/user/show')})"><button type="submit" name="Submit" class="bnt1" style="background-color:#3299cc;border:1px solid #ccc;width:60px;height:30px;cursor:pointer;margin-right:40px;color:#fff;box-shadow:1px;">管理</button></a>
+                   <input type="button" onclick="location.href='({:url("index/user/loginOut")})'" value="退  出" style="background-color:#FF8000;border:1px solid #ccc;width:60px;height:30px;cursor:pointer;color:#fff;"/>
+                </div>
+                <div style="clear:left;padding-top:10px;padding-left:30px;float:right;margin-right:30px;color:red;font-size:13px;">为了您的账号安全，请尽快完善信息</div>
+            </div>
+            </div>
+        </div>
+        {/eq}

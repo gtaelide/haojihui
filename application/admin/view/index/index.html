@@ -1,0 +1,103 @@
+{include file='public/meta' /}
+<title>({$system->short})信息门户网站后台管理系统</title>
+</head>
+<body>
+{include file='public/header' /}
+{include file='public/menu' /}
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
+		<div class="Hui-tabNav-wp">
+			<ul id="min_title_list" class="acrossTab cl">
+				<li class="active">
+					<span title="后台管理系统" data-href="<{:URL('admin/index/welcome')}>">我的桌面</span>
+					<em></em></li>
+		</ul>
+	</div>
+		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+</div>
+	<div id="iframe_box" class="Hui-article">
+		<div class="show_iframe">
+			<div style="display:none" class="loading"></div>
+			<iframe scrolling="yes" frameborder="0" src="({:URL('admin/index/welcome')})"></iframe>
+	</div>
+</div>
+</section>
+
+<div class="contextMenu" id="Huiadminmenu">
+	<ul>
+		<li id="closethis">¹Ø±Õµ±Ç° </li>
+		<li id="closeall">¹Ø±ÕÈ«²¿ </li>
+</ul>
+</div>
+<!--_footer ×÷Îª¹«¹²Ä£°æ·ÖÀë³öÈ¥-->
+{include file='public/footer' /}
+
+<!--ÇëÔÚÏÂ·½Ð´´ËÒ³ÃæÒµÎñÏà¹ØµÄ½Å±¾-->
+<script type="text/javascript" src="http://www.info.com/public/static/admin/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript">
+$(function(){
+	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
+		bindings: {
+			'closethis': function(t) {
+				console.log(t);
+				if(t.find("i")){
+					t.find("i").trigger("click");
+				}		
+			},
+			'closeall': function(t) {
+				alert('Trigger was '+t.id+'\nAction was Email');
+			},
+		}
+	});*/
+});
+/*¸öÈËÐÅÏ¢*/
+function myselfinfo(){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //²»¹Ì¶¨
+		maxmin: true,
+		shade:0.4,
+		title: '²é¿´ÐÅÏ¢',
+		content: '<div>¹ÜÀíÔ±ÐÅÏ¢</div>'
+	});
+}
+
+/*×ÊÑ¶-Ìí¼Ó*/
+function article_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*Í¼Æ¬-Ìí¼Ó*/
+function picture_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*²úÆ·-Ìí¼Ó*/
+function product_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*ÓÃ»§-Ìí¼Ó*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+
+
+</script> 
+
+</body>
+</html>

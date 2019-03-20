@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>信息发布 - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/info_pub.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /} 
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="infoPub">
+    <div id="content" style="width:850px;">
+        <h2 style="margin-left:10px;margin-bottom:10px;">我的订单</h2>
+        <table cellspacing="1px" cellpadding="1px" style="border:1px solid #ccc;margin-left:10px;" width="100%" style="margin-left:10px;">
+            <thead>
+                <tr height="30" style="background-color:#ddd;font-size:14px">
+                    <th width="100" style="border:1px solid #fff">编号</th>
+                    <th width="200" style="border:1px solid #fff">名称</th>
+                    <th width="100" style="border:1px solid #fff">图片</th>
+                    <th width="100" style="border:1px solid #fff">品牌型号</th>
+                    <th width="100" style="border:1px solid #fff">价格</th>
+                    <th width="100" style="border:1px solid #fff">是否发货</th>
+                    <th width="100" style="border:1px solid #fff">购买时间</th>
+                    <th width="100" style="border:1px solid #fff">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="list" id="vo"}
+                <tr style="border:1px solid #ccc;background-color:#eee;color:#666" >
+                    <td style="border:1px solid #fff" align="center">({$vo.bian})</td>
+                    <td style="border:1px solid #fff">({$vo.product.title})</td>
+                    <td align="center" style="border:1px solid #fff">
+                        <img src="__UPLOAD__/({$vo->product->img})" alt="" width="80px" height="80px;"/>
+                    </td>
+                    <td align="center" style="border:1px solid #fff">({$vo.product.brand})</td>
+                    <td align="center" style="border:1px solid #fff"><span style="color:red">￥({:number_format($vo.price,2)})</span></td>
+                    {eq name="vo.status" value="0"}
+                    <td align="center" style="border:1px solid #fff">
+                    <span style="color:red">未发货</span>
+                    </td>
+                    {else/}
+                    <td align="center" style="border:1px solid #fff">
+                    <span style="color:green">已发货</span>
+                    </td>
+                    {/eq}
+                    <td align="center" style="border:1px solid #fff"><em style="color:#888">({:date('Y-m-d',strtotime($vo.createtime))})</em></td>
+                    <td align="center" style="border:1px solid #fff">
+                        {eq name="vo.enter" value="0"}
+                        <a href="({:URL('index/user/enterOk')})?id=({$vo.id})" style="text-decoration: underline;">
+                            <span style="color:#777">确认收货</span>
+                        </a>
+                        {else/}
+                            <span style="color:#777">已收货</span>
+                        {/eq}
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <hr style="width:100%;margin-left:10px;margin-top:30px;" />
+        <h2 style="margin-left:10px;margin-top:30px;margin-bottom:10px;">声明</h2>
+        <span style="margin-left:10px;">售后服务</span>
+    </div> 
+    <div id="sidebar">
+        <dl class="contact">
+            <dt>QQ在线客服</dt>
+            <dd>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=qq&amp;menu=yes" class="btn_qq"><i></i>({$system->qqs})</a>
+            </dd>
+            <dt>服务热线</dt>
+            <dd><em class="phone">({$system->tel})</em></dd>
+            <dt>({$system->short})公众号 </dt>
+            <dd class="QR_wx">
+                <a href="../about/?317.html"><img src="__UPLOAD__/({$system->img})" alt="掘金汇app客户端"></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>
+
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.config.1.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>

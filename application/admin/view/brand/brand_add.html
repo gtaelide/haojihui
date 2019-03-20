@@ -1,0 +1,168 @@
+<!--_meta 作为公共模版分离出去-->
+{include file="public/meta" /}
+<!--/meta 作为公共模版分离出去-->
+
+<title>添加商家 - H-ui.admin v3.1</title>
+
+</head>
+<body>
+<article class="page-container">
+	<form action="({:URL('admin/brand/brandAddOk')})" enctype="multipart/form-data" method="post" class="form form-horizontal" id="formadd">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商家名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>官方网址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="格式为 如；www.xxx.com" id="href" name="href">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>营业执照代码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="href" name="catid">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主营业务：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="每个词之间以英文;分隔" id="yin" name="yin">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>logo：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" class="input-text" value="" placeholder="" id="logo" name="logo">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系电话：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="tel" name="tel">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">客服QQ：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="" name="qqs" id="qqs">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">所在城市：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+			    <span class="select-box">
+				    <select class="select" size="1" name="adda">
+					    <option value="" selected>请选择城市</option>
+					    {volist name="list" id="vo"}
+					    <option value="({$vo.id})">({$vo.name})</option>
+					    {/volist}
+				    </select>
+				</span> 
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="address" cols="" rows="" class="textarea"  placeholder="请输入详细地址" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">公司简介：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="desc" cols="" rows="" class="textarea"  placeholder="请输入公司简介" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="public/footer" /}
+ <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="__ROUTE__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-member-add").validate({
+		rules:{
+			username:{
+				required:true,
+				minlength:2,
+				maxlength:16
+			},
+			sex:{
+				required:true,
+			},
+			mobile:{
+				required:true,
+				isMobile:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			uploadfile:{
+				required:true,
+			},
+			
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+            $.ajax({
+                type: 'post',
+                url: "({:url('admin/brand/brandAddOk')})",
+                data:$('#form-member-add').serialize(),
+                cache:false,
+                success:function(data){
+                	var datas = eval("("+data+")");
+                	if(datas.status == 0){
+                        parent.layer.msg(datas.msg,{icon:2,time:1000});
+                	    
+                	}else if(datas.status == 1){
+                        parent.layer.msg(datas.msg,{icon:1,time:1000});
+                	    var index = parent.layer.getFrameIndex(window.name);
+        		        parent.$('.btn-refresh').click();
+        		        parent.layer.close(index);	
+                	}else{
+                		parent.layer.msg(datas.msg,{icon:2,time:1000});
+                	    var index = parent.layer.getFrameIndex(window.name);
+        		        parent.$('.btn-refresh').click();
+        		        parent.layer.close(index);	
+                	}
+                },
+                error:function(data){
+                    parent.layer.msg('失败！',{icon:1,time:1000});
+                	var index = parent.layer.getFrameIndex(window.name);
+        		    parent.$('.btn-refresh').click();
+        		    parent.layer.close(index);	  
+            }
+            });
+            return false; // 阻止表单自动提交事件
+		}
+	});
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

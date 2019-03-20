@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>新闻资讯 - ({$system->short}) - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys}) - ({$system->short})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/infolist.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div class="w">
+    <div class="mainChildNav">
+        <dl>
+            <dt><a href="({:URL('index/news/newsList')})?type=1">行业资讯</a></dt>
+            <dt><a href="({:URL('index/news/newsList')})?type=2">平台公告</a></dt>
+        </dl>
+        <div class="search">
+            <div>
+                <form action="/search.asp" method="get">
+                    <input type="text" class="keywords" name="keys" placeholder="请输入关键词搜索" x-webkit-speech="">
+                    <input type="submit" name="btn_search" class="btn_search" value="搜索">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="where_nav2">
+        <a href="({:URL('index/index/index')})">首页</a><span>&gt;</span>
+        {switch name="$typeid"}
+        {case value="1"}<a href="({:URL('index/news/newsList')})?type=1">行业资讯</a>{/case}
+        {case value="2"}<a href="({:URL('index/news/newsList')})?type=2">平台公告</a>{/case}
+        {default/}<a href="({:URL('index/news/newsList')})">新闻资讯</a>
+        {/switch}
+    </div>
+    <div id="main3" class="clearfix">
+        <div class="newsMain">
+            <div class="listContent" >
+                {volist name="list" id="vo"}
+                <dl class="contentBox" style="height:100px">
+                    <dt><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank">({$vo.title})</a></dt>
+                    <dd style="line-height:15px;height:80px">
+                        ({$vo.desc})
+                        <a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" style="color:#3299cc;">[查看详情]</a>
+                        <span style="color:#999;">({:date('Y-m-d',strtotime($vo.createtime))})</span>
+                    </dd>
+                </dl> 
+                {/volist}
+            </div>
+            <!-- 分页-->
+            <div style="width:100%;text-align:center;">
+                 ({$list->render()}) 
+            </div>
+            <style type="text/css">
+                .pagination{
+                    width:100%;
+                    text-align: right;
+                    margin-top:10px;
+                }
+                .pagination li{
+                    float: left;
+                    width:25px;
+                    height:25px;
+                    line-height: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    border: 1px solid #00A3D9;
+                    margin-left: 5px;
+                    color:#666;
+                }
+            </style>
+            <!-- /分页 -->
+        </div>
+        <div class="newsSide"> 
+            {include file="public/list_login2"}
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>热门新闻资讯</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_hot" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>热门行业资讯</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_hang" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>最热平台公告</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_gong" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon mt30"> </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>

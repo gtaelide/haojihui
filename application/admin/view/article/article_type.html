@@ -1,0 +1,104 @@
+﻿{include file='public/meta' /}
+<title>分类管理</title>
+</head>
+<body>
+
+<div class="pd-20 text-c">
+  <form class="Huiform" action="/" method="post" id="myform">
+    添加分类：
+   <select class="input-text" id="sel_Sub" name="typeid" onchange="SetSubID(this);" style="width:200px;">
+     {volist name="list" id="vo"}
+       {eq name="vo.pid" value="0"}
+          <option value="({$vo.id})">({$vo.content})</option>
+       {/eq}
+     {/volist}
+    </select>
+    <input type="hidden" id="hid_ccid" value="" >
+    <input class="input-text" style="width:250px" type="text" value="" placeholder="输入分类" id="article-class-val" name="content"/>
+    <button type="button" class="btn btn-success" id="" name="" onClick="type_add()" style="margin-left:10px;"><i class="icon-plus"></i> 添加</button>
+  </form>
+  <div class="article-class-list cl mt-20">
+    <table class="table table-border table-bordered table-hover table-bg">
+      <thead>
+        <tr class="text-c">
+          <th width="25"><input type="checkbox" name="" value=""></th>
+          <th width="80">ID</th>
+          <th width="80">是否交易</th>
+          <th>分类名称</th>
+          
+          <th width="70">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      {volist name="list" id="vo"}
+        <tr class="text-c">
+          <td><input type="checkbox" name="" value=""></td>
+          <td>({$vo.id})</td>
+          <td>
+              {eq name="vo.allow" value="0"}
+                                    否
+              {else /}
+                                   是
+              {/eq}
+          </td>
+          <td class="text-l">
+          {eq name="vo.pid" value="0"}
+               ({$vo.content})
+          {else /}
+               &nbsp;&nbsp;&nbsp;&nbsp;|---({$vo.content})
+          {/eq}
+          </td>
+        
+          <td class="f-14"><a title="删除" href="javascript:;" onclick="type_del(this,'({$vo.id})')" class="ml-5" style="text-decoration:none"><i class="icon-trash"></i>删除</a></td>
+        </tr>
+       {/volist} 
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+{include file='public/footer' /}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+/*管理员-删除*/
+function type_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:'id='+id,
+			url: '({:URL("admin/article/articleTypeDel")})',
+			cache:false,
+			success: function(data){
+				var parsedJson = eval("("+data+")");
+			　　 if(parsedJson.stuats == 0){
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			　　 }else{
+				   $(obj).parents("tr").remove();
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			    }
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+function type_add(obj){
+	layer.confirm('确认要添加吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:$('#myform').serialize(),
+			url: '({:URL("admin/article/articleTypeAdd")})',
+			success: function(data){
+				 layer.msg('已添加!',{icon:1,time:1000});
+         location.reload();
+			},
+			error:function(data) {
+				 console.log(data.msg);
+			},
+		});		
+	});
+}
+</script>
+</body>
+</html>

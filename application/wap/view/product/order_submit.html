@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 确保适当绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 禁止用户缩放网页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <!-- SEO友好提示-->
+	<meta charset="UTF-8">
+	<title>({$system->short}) - 产品订单</title>
+	<link rel="stylesheet" href="__BOOT__/css/bootstrap.min.css">
+	<script src="__BOOT__/js/bootstrap.min.js"></script>
+   	<script src="__BOOT__/js/jquery-3.3.1.min.js"></script>
+	<style>
+        body ul{
+            margin: 0px;
+     	      padding: 0px;
+        	  font-size: 14px;
+        }
+        ul{
+      	    list-style-type: none;
+        }
+        a{
+     	      text-decoration: none;
+        }
+        .mian{
+         	  width: 100%;
+        }
+	</style>
+
+</head>
+<body>
+<!-- 顶部 -->
+    {include file="public/top" /}
+    <!-- /顶部 -->
+    <!--买家信息-->
+	<div style="margin-top:40px;width:95%;background-color:#eeeeee;border-radius:8px;margin-left:10px;padding-top:10px;padding-bottom: 10px;">
+		<span style="line-height:35px;margin-left:30px;font-size:14px;color:#777;margin-top: 5px;">
+        <label for="names">收件人:</label>
+            {eq name="user->name" value=""}
+            <input type="text" name="names" id="names" value="({$user->username})" /><br/> 
+            {else/}
+            <input type="text" name="names" id="names" value="({$user->name})" /> 
+            {/eq}<br>              
+            
+        </span>
+        <span style="line-height:35px;margin-left:30px;font-size:14px;color:#777;margin-top: 5px;">
+            <label for="tels">电 话：</label>
+            <input type="text" id='tels' value="({$user->tel})"/>  <br>    
+        </span>
+		<span style="line-height:35px;margin-left:30px;font-size:14px;color:#777;margin-top: 5px;">
+            <label for="address">地 址：</label>
+            <input type="text" name="addresss" id="address" value="({$user->address})" />      
+        </span>
+	</div>
+ 	<!--买家信息-->
+	<!--购买的商品信息-->
+	<div class="container" style="margin-top:10px;width:95%;background-color:#eeeeee;border-radius:8px;margin-left:10px;">
+		<ul class="row" style="margin-top:20px;">
+			<li class="col-xs-3"><img src="__UPLOAD__/({$show->img})" alt="" width:10% height="100px;"></li>
+			<li class="col-xs-9">
+				<span style="margin-top:30px;margin-left:50px;font-size:18px;">({$show->title})</span><br>
+				<span style="color:red;float:left;margin-top:30px;margin-left:50px;font-size:18px;">￥({:number_format($show->price,2)})</span>
+			</li>
+		</ul>
+		<ul style="">
+			<li style="margin-left:35%;margin-bottom:50px;margin-top:50px;">
+                
+<form action="({:URL('index/Notify/zhifu')})" method="post" onsubmit="return check();">
+        <input type="hidden" value="({$show->asid})" name="asid"/>
+        <input type="hidden" value="({$show->id})" name="proid"/>
+        <input type="hidden" value="({$user->address})" name="address" id="address"/>
+        <input type="hidden" value="({$show->price})" name="price"/>
+        <input type="hidden" value="({$user->tel})" name="tel" id="tel"/>
+        <input type="hidden"  value="({$show->title})" name="title">
+        <input type="hidden"  value="({$show->uid})" name="mid">
+        <input type="hidden" name="uid" value="({$user->id})">
+        <input type="hidden" value="{eq name='user->name' value=''}({$user->username}){else/}({$user->name}){/eq}" name="name"/>
+        <button class="btn btn-info"  type ="submit" style="width:100px;">提交订单</button>
+    </form>
+    <script type="text/javascript">
+                            $(function(){
+                                $("#names").blur(function(){
+                                    $("#name").val($(this).val())
+                                })
+                            })//验证规则
+                            function check(){
+                                //
+                                if($("#tels").val() == ''){
+                                    alert('请输入手机号码')
+                                    $("#tels").focus()
+                                    return false
+                                }else if($("#tels").val() != ''){
+                                    if(!$("#tels").val().match(/^1[3|4|5|8][0-9]\d{4,8}$/)){
+                                        alert('请输入正确的手机号码')
+                                        $("#tels").focus()
+                                        return false
+                                    }
+                                    var tel = $("#tels").val()
+                                    $("#tel").val(tel)
+                                }
+                                if($("#addresss").val() == ''){
+                                    alert('请输入收货地址');
+                                    $("#addresss").focus()
+                                    return false
+                                }else if($("#addresss").val() != ''){
+                                    var tel = $("#addresss").val()
+                                    $("#address").val(tel)
+                                }
+
+                            }
+
+                        </script>
+            </li>
+		</ul>
+	</div>
+    
+    <div style="margin-top: 10px;"></div>
+    <hr/>
+    <div style="margin-top: 20px;color:#999" class="container">
+        *({$system->short})温馨提示您，请在购买产品前先与卖家客服联系，以保证自己的合法权益。<br/>
+        ({$system->short})对此不承担任何责任
+    </div>
+	
+    <!--购买的商品信息-->
+
+    <!-- 底部 -->
+    {include file="public/footer" /}
+    <!-- 底部 -->
+</body>
+</html>

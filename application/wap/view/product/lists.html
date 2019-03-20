@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 确保适当绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 禁止用户缩放网页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <!-- SEO友好提示-->
+	<meta charset="UTF-8">
+	<title>({$system->short}) - 产品供求信息 - 产品列表</title>
+	<link rel="stylesheet" href="__BOOT__/css/bootstrap.min.css">
+	<script src="__BOOT__/js/bootstrap.min.js"></script>
+   	<script src="__BOOT__/js/jquery-3.3.1.min.js"></script>
+	<style>
+        body ul{
+            margin: 0px;
+     	      padding: 0px;
+        	  font-size: 14px;
+        }
+        ul{
+      	    list-style-type: none;
+        }
+        a{
+     	      text-decoration: none;
+        }
+        .mian{
+         	  width: 100%;
+        }
+        .nav1{width:100%;height:50px;line-height:50px;text-align:center;margin-top:30px;background-color: #eeeeee;}
+   		span{font-size:14px;margin-left:10px;}
+	</style>
+
+</head>
+<body style="position:relative;">
+	<!-- 顶部 -->
+    
+    {include file="public/top" /}
+    <!-- /顶部 -->
+    <!--导航-->
+	<div class="nav1">
+		<a href="({:url('wap/product/lists')})"><span style="font-size:14px;">全部</span></a>
+		<a href="({:url('wap/product/lists')})?choose=1"><span>机械买卖</span></a>
+		<a href="({:url('wap/product/lists')})?choose=2"><span>机械租赁</span></a>
+		<a href="({:url('wap/product/lists')})?choose=3"><span>建筑材料</span></a>
+		<a href="({:url('wap/product/lists')})?choose=4"><span>配件五金</span></a>
+	</div>
+	 <!--导航-->
+	<!--产品展示-->
+	<div class="container" style="margin-bottom:10px;">
+		{volist name="list" id="vo"}
+		<ul class="row" style="margin-top:20px;">
+			<li class="col-xs-3">
+				<a href="({:URL('wap/product/show')})?id=({$vo.id})">
+				<img src="__UPLOAD__/({$vo.img})" alt="" width="100%" >
+				</a>
+			</li>
+			<li class="col-xs-9">
+				<a href="({:URL('wap/product/show')})?id=({$vo.id})">
+				<span style="color:#666;margin-top:30px;margin-right:-15px;">({$vo.title})</span><br>
+				</a>
+				<span style="color:red;margin-top:30px;">￥({:number_format($vo.price,2)})</span><br/>
+				<span style="color:#aaa;margin-top:30px;">
+					{eq name="vo.filled" value="0"}
+						供应
+					{else/}
+						需求
+					{/eq}
+				</span>
+			</li>
+		</ul>
+		{/volist}
+	</div>
+	<div style="height:70px;"></div>
+	<!--产品展示-->
+
+
+    <!-- 底部 -->
+    {include file="public/footer" /}
+    <!-- 底部 -->
+</body>
+</html>

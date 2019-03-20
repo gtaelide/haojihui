@@ -1,0 +1,27 @@
+<div id="sidebar">
+    {include file="public/list_login" /}
+    <div id="new_info" class="boxCommon">
+        <div class="titleCommon" >
+            <h3>最新产品信息</h3>
+        </div>
+        <div class="content2">
+            <ul>
+                {volist name="list_right_new" id="vo"}
+                <li><i>·</i><a href="({:URL('index/product/productShow')})?id=({$vo.id})">({$vo.title})</a></li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+    <div id="new_info" class="boxCommon">
+        <div class="titleCommon">
+            <h3>热销产品信息</h3>
+        </div>
+        <div class="content2">
+            <ul>
+                {volist name="list_right_hot" id="vo"}
+                <li><i>·</i><a href="({:URL('index/product/productShow')})?id=({$vo.id})">({$vo.title})</a></li>
+                {/volist}
+            </ul>
+        </div>
+    </div> 
+</div>

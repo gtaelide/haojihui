@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>平台简介-云南工程机械行业服务平台</title>
+    <meta name="Keywords" content="工程机械挖掘机装载机租赁 买卖 顺风车物流，工程机械驾驶员招聘求职，工程机械，工程施工，建筑材料，大型机械运输，挖掘机，二手挖掘机，挖掘机租赁，黑金刚破碎锤，挂车，平板车，机械信息，建筑工程承包，云南机械，云南工程，云南建筑工程，二手工程机械，云南工程机械，机械行业" >
+    <meta name="Description" content="云南工程机械行业服务平台，专业提供工程机械租赁、买卖、驾驶员求职/招聘；二手挖掘机 装载机 机械拖挂车、大型机械运输；工程施工、工程项目信息、建筑材料供应等供需信息交流的交流发布" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/danye.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div> 
+<div id="main" class="clearfix">	
+    <nav id="nav">
+    	  <ul>
+            {volist name="pages" id="vo"}
+                {eq name="$vo.id" value="$show->id"}
+        	    <li  class="current" >
+                    <a href="({:URL('index/page/pageShow')})?id=({$vo.id})"><span class="ico_guanyu">({$vo.title})</span></a>
+                </li>
+                {else/}
+        	    <li><a href="({:URL('index/page/pageShow')})?id=({$vo.id})"><span class="ico_guanyu">({$vo.title})</span></a></li>
+                {/eq}
+            {/volist}
+        </ul>
+    </nav>	
+	    <div class="content2">
+            <div class="aboutContent">
+                <p>({$show->content})</p>
+            </div>
+	   </div>
+</div>
+<div class="clear"></div>
+{include file="public/footer"}
+{include file="public/div" /}
+</body>
+</html>

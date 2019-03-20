@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>工程项目信息 - ({$system->short}) - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/infolist.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+<!-- 顶部 -->
+{include file="public/top"/}
+<!-- /顶部 -->
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div id="wrapper" class="infoList">
+	  <div id="info_filter" class="condition">
+    	  <div id="where_nav"><a href="../">首页</a>  <span>></span> <a href="/list/?13_1.html">工程项目信息</a></div>
+    	  <div class="IsuLib-SearchForm">
+            <div class="sf-row">
+                <div class="sf-label">工程分类</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        {eq name="$type_id" value=""}
+                            <li><a class="on" href="({:url('index/engineer/engineerList')})">所有工程</a></li>
+                            {volist name="engineertype" id="vo"}
+                               <li><a class="gwt-Anchor" href="({:url('index/engineer/engineerList')})?type=({$vo.id})">({$vo.name})</a></li>
+                            {/volist}
+                        {else/}
+                            <li><a class="gwt-Anchor" href="({:url('index/engineer/engineerList')})">所有工程</a></li>
+                            {volist name="engineertype" id="vo"}
+                            {eq name="vo.id" value="$type_id"}
+                                <li><a class="on" href="({:url('index/engineer/engineerList')})?type=({$vo.id})">({$vo.name})</a></li>
+                            {else/}
+                                <li><a class="gwt-Anchor" href="({:url('index/engineer/engineerList')})?type=({$vo.id})">({$vo.name})</a></li>
+                            {/eq}
+                            {/volist}
+                        {/eq}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>    
+	  <div id="main2">
+    	  <div class="infoTitle">
+        	  <ul class="nav">
+            	  <li class="firstChild current">
+            		    <a href="/list/?13_1.html">所有工程项目信息信息</a>  
+            	  </li>
+                  <!--
+                <li class="totalCount">
+                    <div class="search">
+	                      <form action="/search.asp" method="get">
+	                	        <input name="keys" type="text" value="" class="inputKeyword" placeholder="输入关键词搜索">
+	                	        <input type="submit" class="btn_search" value="搜索">
+	                      </form>
+                    </div>
+                </li>
+            -->
+            </ul>
+            <div class="listInfo">
+            	  <span class="sort" style="width:760px">标题</span>
+                <span class="sj">时间</span>
+            </div>
+        </div>
+        <div class="infoListMain">
+        	<ul class="list">
+                {volist name="list" id="vo"}
+        	        <li class="listBox">
+	                	<span class="title" style="width:750px">
+		                	   <a target="_blank" href="({:URL('index/engineer/engineerShow')})?id=({$vo.id})">({$vo.title})</a>
+	                	</span>
+	                  <span class="update">({:date('Y-m-d',strtotime($vo.createtime))})</span>
+	                </li>
+                {/volist}
+            </ul>
+            <!-- 分页-->
+            <div style="width:100%;text-align:right;">
+                 ({$list->render()}) 
+            </div>
+            <style type="text/css">
+                .pagination{
+                    float: right;
+                    text-align: right;
+                    margin-top:10px;
+                }
+                .pagination li{
+                    float: left;
+                    width:25px;
+                    height:25px;
+                    line-height: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    border: 1px solid #00A3D9;
+                    margin-left: 5px;
+                    color:#666;
+                }
+            </style>
+            <!-- /分页 -->
+        </div>
+    </div>
+    <div id="sidebar"> 
+        {include file="public/list_login" /}
+        <div id="new_info" class="boxCommon">
+            <div class="titleCommon">
+                <h3>工程项目热门信息</h3>
+            </div>
+            <div class="content2">
+                <ul>
+                    {volist name="engineering_right" id="vo"}
+                    <li><i>·</i><a href="({:URL('index/engineer/engineerShow')})?id=({$vo.id})" title="({$vo.title})">({$vo.title})</a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+{include file="public/footer" /}
+<!-- /底部 -->
+<!-- 浮层 -->
+{include file="public/div" /}
+<!-- /浮层 -->
+</body>
+</html>

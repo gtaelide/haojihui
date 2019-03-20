@@ -1,0 +1,194 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__ROUTE__/lib/html5shiv.js"></script>
+<script type="text/javascript" src="__ROUTE__/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__ROUTE__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__ROUTE__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__ROUTE__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__ROUTE__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__ROUTE__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="__ROUTE__/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>订单确定发货 - H-ui.admin v3.1</title>
+
+</head>
+<body>
+<article class="page-container">
+	<form action="" method="post" class="form form-horizontal" id="form-member-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>订单编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="({$show->bian})" placeholder="" id="bian" name="bian" disabled="true">
+				<input type="hidden" name="id" value="({$show->id})">
+			</div>
+		</div>	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>收货人：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="({$show->name})" placeholder="" id="username" name="username" disabled="true">
+				<input type="hidden" name="id" value="({$show->id})">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系电话：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="({$show->tel})" placeholder="" id="tel" name="tel" disabled="true">
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>收货地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="({$show->address})" placeholder="" id="address" name="address" disabled="true">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>产品名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="" value="({$show->product->title})" name="price" id="price" disabled="true">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>产品缩略图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<img src="__UPLOAD__/({$show->product->img})" alt="({$show->product->title})" width=200px"">
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>金额：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="" value="￥({:number_format($show->price)})" name="price" id="price" disabled="true">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认并发货：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+			    {eq name="show->status" value="1"}
+				<div class="radio-box">
+					<input name="status" type="radio" id="sex-1" checked value="1">
+					<label for="sex-1">已发货</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" name="status" value="0">
+					<label for="sex-2">未发货</label>
+				</div>
+				{else /}
+				<div class="radio-box">
+					<input name="status" type="radio" id="sex-1" value="1">
+					<label for="sex-1">已发货</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sex-2" name="status" value="0" checked>
+					<label for="sex-2">未发货</label>
+				</div>
+				{/eq}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">快递编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="如果有快递编号，请输入" name="daima" id="daima" >
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="public/footer" /}
+ <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="__ROUTE__/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-member-add").validate({
+		rules:{
+			username:{
+				required:true,
+				minlength:2,
+				maxlength:16
+			},
+			sex:{
+				required:true,
+			},
+			mobile:{
+				required:true,
+				isMobile:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			uploadfile:{
+				required:true,
+			},
+			
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+            $.ajax({
+                type: 'post',
+                url: "({:url('admin/catid/catidShow1Ok')})",
+                data:$('#form-member-add').serialize(),
+                cache:false,
+                success:function(data){
+                	var datas = eval("("+data+")");
+                	if(datas.status == 0){
+                        parent.layer.msg(datas.msg,{icon:2,time:1000});
+                	    
+                	}else if(datas.status == 1){
+                        parent.layer.msg(datas.msg,{icon:1,time:1000});
+                	    var index = parent.layer.getFrameIndex(window.name);
+        		        parent.$('.btn-refresh').click();
+        		        parent.layer.close(index);	
+                	}else{
+                		parent.layer.msg(datas.msg,{icon:2,time:1000});
+                	    var index = parent.layer.getFrameIndex(window.name);
+        		        parent.$('.btn-refresh').click();
+        		        parent.layer.close(index);	
+                	}
+                },
+                error:function(data){
+                    parent.layer.msg('失败！',{icon:1,time:1000});
+                	var index = parent.layer.getFrameIndex(window.name);
+        		    parent.$('.btn-refresh').click();
+        		    parent.layer.close(index);	  
+            }
+            });
+            return false; // 阻止表单自动提交事件
+		}
+	});
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

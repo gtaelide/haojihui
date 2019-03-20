@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 确保适当绘制和触屏缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 禁止用户缩放网页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <!-- SEO友好提示-->
+	<meta charset="UTF-8">
+	<title>手机站</title>
+	<link rel="stylesheet" href="__BOOT__/css/bootstrap.min.css">
+	<script src="__BOOT__/js/bootstrap.min.js"></script>
+   	<script src="__BOOT__/js/jquery-3.3.1.min.js"></script>
+	<style>
+        body ul{
+            margin: 0px;
+     	      padding: 0px;
+        	  font-size: 14px;
+        }
+        ul{
+      	    list-style-type: none;
+        }
+        a{
+     	      text-decoration: none;
+        }
+        .mian{
+         	  width: 100%;
+        }
+	</style>
+</head>
+<body style="position:relative">
+    <!-- 顶部 -->
+    {include file="public/top" /}
+    <!-- /顶部 -->
+    <div style="margin-top:50px;margin-left:5px;color:#999">首页 >> 供求信息 </div>
+    <form action="({:URL('wap/article/lists')})" class="container" style="margin-right:10px;margin-top:20px;" role="form" id="myform">
+        <div style="margin-top:5px;" class="row" >
+            <div class="col-xs-4 form-group">
+                <select name="type" id="type" class="form-control">
+                    <option value="">分类</option>
+                    <option value="4">工程信息</option>
+                    <option value="5">人员信息</option>
+                    <option value="6">物件运输</option>
+                    <option value="8">其他供求</option>
+                </select>
+            </div>
+            <div class="col-xs-4 form-group" style="text-align:center">
+                <select name="address" id="address" class="form-control">
+                    <option value="">省份</option>
+                    {volist name="address" id="vo"}
+                        <option value="({$vo.id})">({$vo.short})</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-xs-4 form-group">
+                <select name="date" id="date" class="form-control">
+                    <option value="">时间</option>
+                    <option value="today">今天</option>
+                    <option value="yesterday">昨天</option>
+                    <option value="week">本周</option>
+                    <option value="last week">上周</option>
+                    <option value="month">本月</option>
+                    <option value="last month">上月</option>
+                    <option value="year">今年</option>
+                    <option value="last year">去年</option>
+                </select>  
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#type').change(function(){
+                    $('#myform').submit();
+                })
+                $('#address').change(function(){
+                    $('#myform').submit();
+                })
+                $('#date').change(function(){
+                    $('#myform').submit();
+                })
+            })
+        </script>
+    </form>
+    <!-- 广告 -->
+    <div style="margin-top:10px;"><img src="__UPLOAD__/({$ad->img})" alt="" width="100%"></div> 
+    <div class="top" style="">
+        <div class="container">
+            <ul class="row">
+                {volist name="list" id="vo"}
+            	<li>
+                   <a href="({:URL('wap/Article/show')})?id=({$vo.id})">({$vo.title})</a>
+                   <span>({:date('Y-m-d',strtotime($vo.createtime))})</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+    <style type="text/css">
+        .line{
+            background-color:#3299cc;
+            height:1px;
+            width:100%;
+            margin-top:30px;
+        } 
+        .top{
+            width:100%;
+            height:50px;
+            line-height:50px;
+            position:relative;
+        } 
+        .top div{
+            margin-top:30px;
+        }
+        .top li{
+            border-bottom:1px solid #ccc;
+            height:40px;
+            line-height:40px;
+            padding-right:5px;
+            padding-left:5px;
+        }
+        .top a{
+            color:#555;
+        }
+        .top span{
+            float:right; color:#ccc;
+        }
+    </style>
+    <!-- 底部 -->
+    {include file="public/footer" /}
+    <!-- 底部 -->
+</body>
+</html>

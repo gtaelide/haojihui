@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>会员资料 - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/info_pub.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /} 
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="infoPub">
+	  <div id="content">
+    	  <div class="nr_text" style="background:url(__INDEX__/images/userbg.jpg) no-repeat right bottom">
+            <h1 style="margin-left:50px;color:#3299cc;">用户资料中心</h1>
+		        <form method="post" name="" action="({:URL('index/user/update')})">
+                <table border="0" cellpadding="2" cellspacing="0" align="center" width="100%" style="margin-top:20px;">
+                    <tr>
+                        <td height="45" colspan="4">
+                            <span style="color:#F00; padding-left:40px; font-size:18px; font-weight:bold; font-family:'微软雅黑'">
+                                <script src="__INDEX__//inc/AspCms_AdvJs.asp?id=9" language="JavaScript"></script>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" height="45" align="center">用户名：</td>
+                        <td width="60%" height="45">({$show->username})&nbsp;</td>
+                        <td width="20%" rowspan="8" align="center">
+                            <script src="/inc/AspCms_AdvJs.asp?id=4" language="JavaScript"></script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">注册时间：</td>
+                        <td height="45">({$show->createtime})</td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">积分：</td>
+                        <td height="45">({$show->integral})</td>
+                    </tr>
+                 
+                    <tr>
+                        <td height="45" align="center">新密码：</td>
+                        <td height="45"><input name="password" type="password"  class="txt1">
+                            <span style="color:red">&nbsp;*不修改请留空</span> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">新密码确认：</td>
+                        <td height="45"><input name="password2" type="password"  class="txt1"></td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">真实姓名：</td>
+                        <td height="45"><input type="text" name="name"  class="txt1" size=30 maxlength="50" value="({$show->name})"/></td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">性别：</td>
+                        <td height="45">
+                        {eq name="$show->sex" value="1"}
+                            <input name="sex" type="radio" value="1" checked="checked">男　
+                            <input name="sex" type="radio" value="0" >女
+                        {else/}
+                            <input name="sex" type="radio" value="1" >男　
+                            <input name="sex" type="radio" value="0" checked="checked">女
+                        {/eq}
+                        </td>
+                    </tr>
+                    <tr>
+                    <td height="45" align="center">地址：</td>
+                        <td height="45">
+                            <textarea name="address" id="" cols="30" rows="5" >({$show->address})</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">出生日期：</td>
+                        <td height="45">
+                            <input type="date" name="birthday"  class="txt1" size=30 maxlength="50" value="({$show->birthday})"/>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">手机：</td>
+                        <td height="45">
+                            <input type="text" name="tel"  class="txt1" size=30 maxlength="50" value="({$show->tel})"/></td>
+                        <td rowspan="5" align="center" valign="middle">&nbsp;</td>
+                    </tr>
+                        <td height="45" align="center">E-MAIL：</td>
+                        <td height="45">
+                            <input type="text" name="email"  class="txt1" size=30 maxlength="50" value="({$show->email})"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">QQ：</td>
+                        <td height="45">
+                            <input type="text" name="qqs"  class="txt1" size=30 maxlength="50" value="({$show->qqs})"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center"></td>
+                        <td height="45">
+                            <input type="submit" name="Submit" class="normal-button"  style="padding:8px 20px; background:#F93; border:none; color:#fff; font-size:16px; border-radius:5px"  value="保存" />&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </form>
+	      </div>
+    </div> 
+    <div id="sidebar">
+		    <dl class="contact">
+        	  <dt>QQ在线客服</dt>
+            <dd>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=qq&amp;menu=yes" class="btn_qq"><i></i>({$system->qqs})</a>
+            </dd>
+            <dt>服务热线</dt>
+            <dd><em class="phone">({$system->tel})</em></dd>
+            <dt>({$system->short})公众号 </dt>
+            <dd class="QR_wx">
+                <a href="../about/?317.html"><img src="__UPLOAD__/({$system->img})" alt="({$system->name})"></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>

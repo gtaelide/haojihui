@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>信息发布 - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/info_pub.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /} 
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="infoPub">
+    <div id="content" style="width:850px;">
+        <div class="nr_text" style="background:url(__INDEX__/images/userbg.jpg) no-repeat right bottom" style="width:100%">
+            <div style="width:100%">
+                <ul style="font-size:17px;margin-left:10px;width:100%">
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#3299cc;color:#fff;'>发布供应需求信息</li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make2')})">发布招聘求职信息</a></li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make3')})">发布工程项目信息</a></li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make4')})">申请合作商家</a></li>
+                </ul>
+            </div>
+            <div style="clear:both;"></div>
+            <hr style="width:100%;margin-left:10px;background-color:#ccc" />
+            <form method="post" action="({:URL('index/user/makeOk')})?choose=1" onsubmit="return check()" enctype="multipart/form-data">
+                <table border="0" cellpadding="2" cellspacing="0" align="center" width="100%" style="margin-top:0px;">
+                    <tr>
+                        <td height="45" colspan="4" align="center">
+                            <span style="color:#F00; padding-left:40px; font-size:18px; font-weight:bold; font-family:'微软雅黑'">
+                                供求信息发布
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" height="45" align="center">信息标题：</td>
+                        <td width="60%" height="45">
+                            <input type="text" value="" placeholder="" name="title" style="height:30px;width:100%" id="title"/>
+                            <span id="span_for_title" style="color:red;display:none;">*标题不能为空</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">供求类型：</td>
+                        <td height="45">
+                            <select name="filled" style="height:30px;width:50%" id="filled">
+                                <option value="">-- 请选择分类 --</option>
+                                <option value="0">产品供应</option>
+                                <option value="1">产品需求</option>
+                            </select>
+                             <span id="span_for_filled" style="color:red;display:none;">*必须选择供求类型</span>
+                        </td>
+                    </tr>
+                    <script type="text/javascript">
+                        $(function(){
+                            $("#filled").change(function(){
+
+                                if($(this).val() == 0){
+                                    $("#price").removeAttr('disabled');
+                                }else{
+                                    $("#price").attr({disabled:'true'});
+                                }
+                            })
+                        })
+                    </script>
+                    <tr>
+                        <td height="45" align="center">所属栏目：</td>
+                        <td height="45">
+                            <select name="typesid" style="height:30px;width:50%" id="typesid">
+                                <option value="">-- 请选择分类 --</option>
+                                {volist name="type_id" id="vo"}
+                                    {eq name="vo.pid" value="0"}
+                                        <option value="({$vo.id})">({$vo.content})</option>
+                                    {else/}
+                                    {/eq}
+                                {/volist}
+                            </select>
+                            <select name="typeid" style="height:30px;width:50%;margin-top:5px" id="typeid">
+                                <option value="">-- 请选择分类 --</option>
+                            </select>
+                            <span id="span_for_typeid" style="color:red;display:none;">*分类必须选择</span>
+                        </td>
+                    </tr>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#typeid").css({display:'none'})
+                            $("#typesid").change(function(){
+                                var id = $("#typesid").val()
+                                $("#typeid").css({display:'block'})
+                                $.ajax({
+                                    url:"({:URL('index/User/mmm')})",
+                                    data:"id=" + id,
+                                    cache:false,
+                                    type:"post",
+                                    success:function(data){
+                                        $("#typeid").children().remove()
+                                        $("#typeid").append("<option value=''>-- 请选择分类 --</option>")
+                                        var jsondata = eval("("+data+")");
+                                        for(var i = 0 ;i <= jsondata.length ; i++){
+                                            $("#typeid").append("<option value='" + jsondata[i].id + "'>" + jsondata[i].content + "</option>");
+                                        }
+                                    },
+                                    error:function(){
+                                        alert("连接服务器失败");
+                                    }
+                                })
+                            })
+                        })
+                    </script>
+                    <tr>
+                        <td height="45" align="center">价格：</td>
+                        <td height="45">
+                            <input type="text" name="price" id="price" style="height:30px;width:50%" size=30 maxlength="50" value="" />
+                            <span style="color:red;font-size:13px;">*如为需求可以不填</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">封面图：</td>
+                        <td height="45">
+                            <input type="file" name="imgs"  style="height:30px;width:50%" size=30 maxlength="50" value="" />
+                            <span  style="color:red;font-size:13px;">*如为需求可以不填</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">品牌：</td>
+                        <td height="45">
+                            <input type="text" name="brand"  style="height:30px;width:50%" size=30 maxlength="50" value="" />
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">联 系 人：</td>
+                        <td height="45">
+                            <input type="text" name="author" id="author" style="height:30px;width:50%" size=30 maxlength="50" value="" />
+                            <span id="span_for_author" style="color:red;display:none;">*请输入联系人</span>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td height="45" align="center">电子邮箱：</td>
+                        <td height="45">
+                            <input name="email" type="text" style="height:30px;width:50%" placeholder="@"/>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td height="45" align="center">联系电话：</td>
+                        <td height="45">
+                            <input name="tel" type="text" id="tel" style="height:30px;width:50%" placeholder=""/>
+                            <span id="span_for_tel" style="color:red;display:none;">*请输入联系电话</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">Q&nbsp;Q：</td>
+                        <td height="45">
+                            <input type="text" name="qqs"  style="height:30px;width:50%" size=30 maxlength="50" value=""/>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">地&nbsp;&nbsp;区：</td>
+                        <td height="45">
+                            <select name="adda" style="height:30px;width:50%" id="select">
+                                <option value="">-- 请选择地区 --</option>
+                                {volist name="adda" id="vo"}
+                                    <option value="({$vo.id})">({$vo.name})</option>
+                                {/volist}
+                            </select>
+                            <span id="span" style="color:red;display:none;">*地区必须选择</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">主要内容：</td>
+                        <td>
+                            <script id="editor" type="text/plain" style="width:100%;height:400px;" name="content"></script> 
+                        </td>
+                    </tr>
+                    <tr width="100%">
+                        <td height="45" align="center"></td>
+                        <td height="45">
+                            <input type="submit" name="Submit" class="normal-button"  style="padding:8px 20px; background:#F93; border:none; color:#fff; font-size:16px; border-radius:5px"  value="发布" />&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div> 
+    <div id="sidebar">
+        <dl class="contact">
+            <dt>QQ在线客服</dt>
+            <dd>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=qq&amp;menu=yes" class="btn_qq"><i></i>({$system->qqs})</a>
+            </dd>
+            <dt>服务热线</dt>
+            <dd><em class="phone">({$system->tel})</em></dd>
+            <dt>({$system->short})公众号 </dt>
+            <dd class="QR_wx">
+                <a href=""><img src="__UPLOAD__/({$system->img})" alt="好机汇"></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+
+</html>
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.config.1.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>
+    <script>
+         function check(){
+              var title = document.getElementById('title');
+              if(title.value.length <= 2 ){
+                   document.getElementById('span_for_title').style.display = 'inline';
+                   document.getElementById('title').focus();
+                   return false;
+              }
+              var filled = document.getElementById('filled');
+              if(filled.value ==  '' ){
+                   document.getElementById('span_for_filled').style.display = 'inline';
+                   document.getElementById('filled').focus();
+                   return false;
+              }
+              var select = document.getElementById('typesid');
+              if(select.value == ''){
+                   document.getElementById('span_for_typeid').style.display = 'inline';
+                   document.getElementById('typesid').focus();
+                   return false;
+              }
+              var typeid = document.getElementById('typeid');
+              if(typeid.value == ''){
+                   document.getElementById('span_for_typeid').style.display = 'inline';
+                   document.getElementById('typeid').focus();
+                   return false;
+              }
+             var author = document.getElementById('author');
+             if(author.value == ''){
+                 document.getElementById('span_for_author').style.display = 'inline';
+                 author.focus();
+                 return false;
+             }
+             var price = document.getElementById('price').value();
+             if(price != ''){
+                 if (!$("#price").val().match(/^[0-9]*$/)) {
+                     alert('请输入正确的价格');
+                     $("#price").focus()
+                     return false
+                 }
+             }
+             var tel = document.getElementById('tel');
+             if(tel.value == ''){
+                 document.getElementById('span_for_tel').style.display = 'inline';
+                 tel.focus();
+                 return false;
+             }else{
+                 if (!$("#tel").val().match(/^1(3|4|5|7|8|9)\d{9}$/)) {
+                     alert('请输入正确的手机号码')
+                     $("#tel").focus()
+                     return false
+                 }
+             }
+         }
+    </script>

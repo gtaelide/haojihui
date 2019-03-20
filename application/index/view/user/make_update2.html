@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>信息发布 - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/info_pub.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+{include file="public/top" /}
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /} 
+        <!--/导航--> 
+    </div>
+</div>
+<div id="main" class="infoPub">
+    <div id="content" style="width:850px;">
+        <div class="nr_text" style="background:url(__INDEX__/images/userbg.jpg) no-repeat right bottom" style="width:100%">
+            <div style="width:100%">
+                <ul style="font-size:17px;margin-left:10px;width:100%">
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make1')})">发布供应需求信息</a></li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make2')})">发布招聘求职信息</a></li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#3299cc;color:#fff;'>发布工程项目信息</li>
+                    <li style='margin-left:20px;float: left;border: 1px solid #ccc;height:30px;line-height: 30px;width:180px;text-align: center;background-color:#eee;'><a href="({:URL('index/user/make4')})">申请合作商家</a></li>
+                </ul>
+            </div>
+            <div style="clear:both;"></div>
+            <hr style="width:100%;margin-left:10px;background-color:#ccc" />
+            <form method="post" name="" action="({:URL('index/user/makeUpdateOk2')})?choose=3">
+                <table border="0" cellpadding="2" cellspacing="0" align="center" width="100%" style="margin-top:0px;">
+                    <tr>
+                        <td height="45" colspan="4" align="center">
+                            <span style="color:#F00; padding-left:40px; font-size:18px; font-weight:bold; font-family:'微软雅黑'">
+                                工程项目信息发布
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" height="45" align="center">信息标题：</td>
+                        <td width="60%" height="45">
+                            <input type="text" value="({$show->title})" name="title" style="height:30px;width:100%"/>
+                            <input type="hidden" value="({$show->id})" name="id" style="height:30px;width:100%"/>
+                        </td>
+                        <td width="20%" rowspan="8" align="center">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">所属分类：</td>
+                        <td height="45">
+                            <select name="typeid" style="height:30px;width:50%">
+                                <option value="">-- 请选择分类 --</option>
+                                {volist name="types" id="vo"}
+                                    {eq name="vo.id" value="$show->typeid"}
+                                    <option value="({$vo.id})" selected="selected">({$vo.name})</option>
+                                    {else/}
+                                     <option value="({$vo.id})">({$vo.name})</option>
+                                    {/eq}
+                                {/volist}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">来&nbsp;&nbsp;源：</td>
+                        <td height="45">
+                            <input type="text" name="from" value="({$show->from})" style="height:30px;width:30%" size=30 maxlength="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">地&nbsp;&nbsp;区：</td>
+                        <td height="45">
+                            <select name="adda" style="height:30px;width:50%">
+                                {volist name="adda" id="vo"}
+                                    {eq name="$vo.id" value="$show->adda"}
+                                    <option value="({$vo.id})" selected="selected">({$vo.name})</option>
+                                    {else/}
+                                    <option value="({$vo.id})" >({$vo.name})</option>
+                                    {/eq}
+                                {/volist}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="45" align="center">主要内容：</td>
+                        <td>
+                            <script id="editor" type="text/plain" style="width:100%;height:400px;" name="content">({$show->content})</script> 
+                        </td>
+                    </tr>
+                    <tr width="100%">
+                        <td height="45" align="center"></td>
+                        <td height="45">
+                            <input type="submit" name="Submit" class="normal-button"  style="padding:8px 20px; background:#F93; border:none; color:#fff; font-size:16px; border-radius:5px"  value="发布" />&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div> 
+    <div id="sidebar">
+        <dl class="contact">
+            <dt>QQ在线客服</dt>
+            <dd>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=qq&amp;menu=yes" class="btn_qq"><i></i>({$system->qqs})</a>
+            </dd>
+            <dt>服务热线</dt>
+            <dd><em class="phone">({$system->tel})</em></dd>
+            <dt>({$system->short})公众号 </dt>
+            <dd class="QR_wx">
+                <a href="../about/?317.html"><img src="__UPLOAD__/({$system->img})" alt="掘金汇app客户端"></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.config.1.js"></script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
+<script type="text/javascript" src="__ROUTE__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>

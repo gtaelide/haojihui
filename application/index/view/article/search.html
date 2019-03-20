@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>供求信息-云南工程机械行业服务平台</title>
+    <meta name="Keywords" content="" >
+    <meta name="Description" content="" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/infolist.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+<body>
+{include file="public/top"/}
+<div class="navbar" id="navBar" style="position: relative;z-index:13;">
+    <div class="container clearfix"> 
+        {include file="public/div_nav" /}
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div id="wrapper" class="infoList">
+	  <div id="info_filter" class="condition">
+    	  <div id="where_nav"><a href="../">首页</a>  <span>></span> <a href="/list/?14_1.html">供求信息</a></div>
+    	  <div class="IsuLib-SearchForm">
+            <div class="sf-row">
+                <div class="sf-label">信息分类</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        {eq name="$pid" value=""}
+                        <li><a class="on" href="({:URL('index/article/articleList')})">全部</a></li>
+                            {volist name="type" id="vo"}
+                                {eq name="vo.pid" value="0"}
+                                <li><a class="gwt-Anchor" href="({:URL('index/article/articleList')})?pid=({$vo.id})&address=({$url_address})">({$vo.content})</a></li>
+                                {else/}
+                                {/eq}
+                            {/volist}
+                        {else/}
+                            <li><a class="gwt-Anchor" href="({:URL('index/article/articleList')})">全部</a></li>
+                            {volist name="type" id="vo"}
+                                {eq name="vo.pid" value="0"}
+                                    {eq name="vo.id" value="$pid"}
+                                    <li><a class="on" href="({:URL('index/article/articleList')})?pid=({$vo.id})&address=({$url_address})">({$vo.content})</a></li>
+                                    {else/}
+                                    <li><a class="gwt-Anchor" href="({:URL('index/article/articleList')})?pid=({$vo.id})&address=({$url_address})">({$vo.content})</a></li>
+                                    {/eq}
+                                {else/}
+                                {/eq}
+                            {/volist}
+                        {/eq}
+                    </ul>
+                </div>
+            </div>
+            <div class="sf-row">
+            <div class="sf-label">省份</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        <li>
+                            {eq name="$url_address" value=""}
+                                <li class='active'><a href='({:URL("index/article/articleList")})' class='on'>全部</a></li>
+                                {volist name="address" id="vo"}
+                                <li><a href='({:URL("index/article/articleList")})?address=({$vo.id})&pid=({$pid})'>({$vo.short})</a></li>
+                                {/volist}
+                            {else/}
+                                <li><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                                {volist name="address" id="vo"}
+                                    {eq name="vo.id" value="$url_address"}
+                                        <li class='active'><a href='({:URL("index/article/articleList")})?address=({$vo.id})&pid=({$pid})' class='on'>({$vo.short})</a></li>
+                                    {else/}
+                                        <li><a href='({:URL("index/article/articleList")})?address=({$vo.id})&pid=({$pid})'>({$vo.short})</a></li>
+                                   {/eq}
+                                {/volist}
+                            {/eq}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sf-row">
+                <div class="sf-label">更新时间</div>
+                <div class="sf-values">
+                    <ul class="sf-expand">
+                        <li>
+                            {switch name="date"}
+                            {case value="today"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today' class="on">今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday' >昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week' >本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="yesterday"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday' class="on">昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week' >本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="week"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week' class="on">本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last week"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'class="on">上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month' >本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="month"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month' class="on">本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' >上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last month"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month' class="on">上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' >今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="year"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year' class="on">今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' >去年</a></li>
+                            {/case}
+                            {case value="last year"}
+                            <li class='active'><a href='({:URL("index/article/articleList")})'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year'>今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year' class="on">去年</a></li></li>
+                            {/case}
+                            {default /}
+                            <li class='active'><a href='({:URL("index/article/articleList")})' class='on'>全部</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=today'>今天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=yesterday'>昨天</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=week'>本周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&data=last week'>上周</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=month'>本月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last month'>上月</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=year'>今年</a></li>
+                            <li><a href='({:URL("index/article/articleList")})?address=({$url_address})&pid=({$pid})&date=last year'>去年</a></li>
+                            {/switch} 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+	  <div id="main2">
+    	  <div class="infoTitle">
+        	  <ul class="nav">
+            	  <li class="firstChild current">
+            		    <a href="/list/?14_1.html">所有供求信息</a>
+            	  </li>
+                  <!--
+                <li class="totalCount">
+                    <div class="search">
+	                      <form action="/search.asp" method="get">
+	                	        <input name="keys" type="text" value="" class="inputKeyword" placeholder="输入关键词搜索">
+	                	        <input type="submit" class="btn_search" value="搜索">
+	                      </form>
+                    </div>
+                </li>
+            -->
+            </ul>
+            <div class="listInfo">
+            	  <span class="sort">标题</span>
+                <span class="rq">地区</span>
+                <span class="lx">类型</span>
+                <span class="sj">时间</span>
+            </div>
+        </div>
+        <div class="infoListMain">
+            <ul class="list">
+                {volist name="list" id="vo"}
+        	    <li class="listBox">
+	                <span class="title" >
+		                <a target="_blank" href="({:URL('index/article/ArticleShow')})?id=({$vo.id})" style="color:#777">
+                        ({$vo.title})
+                        </a>
+	                </span>
+                    <span class="address" style="padding-left:0px;">({$vo.addressadda.short})</span>
+	                <span class="type" style="padding-left:0px;">({$vo.type.content})</span>
+	                <span class="update">({:date('Y-m-d',strtotime($vo.createtime))})</span>
+	           </li>
+                {/volist}
+            </ul>
+            <!-- 分页-->
+            <div style="width:100%;text-align:center;">
+                 ({$list->render()}) 
+            </div>
+            <style type="text/css">
+                .pagination{
+                    width:100%;
+                    text-align: right;
+                    margin-top:10px;
+                }
+                .pagination li{
+                    float: left;
+                    width:25px;
+                    height:25px;
+                    line-height: 25px;
+                    text-align: center;
+                    font-size: 14px;
+                    border: 1px solid #00A3D9;
+                    margin-left: 5px;
+                    color:#666;
+                }
+            </style>
+            <!-- /分页 -->
+        </div>
+    </div>
+    <div id="sidebar">
+        {include file="public/list_login" /}
+        <div id="new_info" class="boxCommon">
+            <div class="titleCommon" >
+                <h3 >供求热门信息</h3>
+            </div>
+            <div class="content2">
+                <ul>
+                    {volist name="right" id="vo"}
+                    <li>
+                        <i>·</i><a href="({:URL('index/article/ArticleShow')})?id=({$vo.id})">({$vo.title})</a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+{include file="public/div" /}
+</body>
+</html>

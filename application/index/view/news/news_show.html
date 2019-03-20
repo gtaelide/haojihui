@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>({$show->title}) - ({$system->short}) - ({$system->name})</title>
+    <meta name="Keywords" content="({$system->keys})" >
+    <meta name="Description" content="({$system->desc})" >
+    <link href="__INDEX__/css/base.css" rel="stylesheet">
+    <link href="__INDEX__/css/infolist.css" rel="stylesheet">
+    <link href="__INDEX__/css/news.css" rel="stylesheet">
+    <script type="text/javascript" src="__INDEX__/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="__INDEX__/js/leftnav.js"></script>
+</head>
+
+<body>
+<!-- 顶部 -->
+{include file="public/top" /}
+<!-- /顶部 -->
+<div class="navbar" id="navBar" style="position: relative;z-index: 13">
+    <div class="container clearfix"> 
+        <!-- 直通车 -->
+        {include file="public/div_nav" /}
+        <!-- /直通车 -->
+        <!--导航-->
+        {include file="public/list_nav" /}
+        <!--/导航--> 
+    </div>
+</div>
+<div class="w">
+    <div class="mainChildNav">
+        <dl>
+            <dt><a href="({:URL('index/news/newsList')})?type=1">行业资讯</a></dt>
+            <dt><a href="({:URL('index/news/newsList')})?type=2">平台公告</a></dt>
+        </dl>
+        <div class="search">
+            <div>
+                <form action="/search.asp" method="get">
+                    <input type="text" class="keywords" name="keys" placeholder="请输入关键词搜索" x-webkit-speech="">
+                    <input type="submit" name="btn_search" class="btn_search" value="搜索">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="where_nav2">
+        <a href="({:URL('index/index/index')})">首页</a><span>&gt;</span> 
+        {eq name="$show->type" value="1"}
+        <a href="({:URL('index/news/newsList')})?type=1">行业资讯</a><span>&gt;</span> 
+        {else/}
+        <a href="({:URL('index/news/newsList')})?type=2">平台公告</a><span>&gt;</span> 
+        {/eq}
+        <a href="({:URL('index/news/newsShow')})?id=({$show->id})">({$show->title})</a>
+    </div>
+    <div id="main3" class="clearfix">
+        <div class="newsMain" style="border-bottom:1px solid #ccc">
+            <div class="titleHeader">
+                <h1>({$show->title})</h1>
+                <div class="titleInfo">
+                    <span class="postDate">发布时间：({:date('Y-m-d',strtotime($show->createtime))})</span>
+                    <span class="copyFrom"><i>来源：({$show->from})</i></span>
+                    <span class="copyFrom"><i>浏览次数：({$show->nums})</i></span>
+                </div>
+            </div>
+            <div class="newsContent" style="padding:20px;">
+                ({$show->content})
+                <div class="contentFooter" style="margin-top:80px;">
+                    <div id="bdshare"  class="bdsharebuttonbox">
+                        <span class="bds_more">分享到：</span> 
+                        <a href="#" class="bds_more" data-cmd="more"></a>
+                        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a> 
+                    </div>
+                </div>
+                <div class="disclaimer">
+                    <p>免责声明：以上部分信息来源于互联网，如果您认为侵犯了您的权利，请及时与好机汇联系以便我们及时删改!</p>
+                    <p>联系QQ:<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=({$system->qqs})&amp;site=({$system->short})&amp;menu=yes" target="_blank">({$system->qqs})</a>&nbsp;&nbsp;联系电话:({$system->tel})</p>
+                </div>
+                <ul class="newsLink">
+                    <li class="prev">
+                        <i>上一篇：</i>
+                        {eq name="front" value=""}
+                            没有了
+                        {else /}
+                            <a href="({:URL('index/news/newsShow')})?id=({$front->id})" target="_blank">
+                            ({$front->title})
+                        {/eq}
+                        </a>
+                    </li>
+                    <li class="next">
+                        <i>下一篇：</i>   
+                        {eq name="after" value=""}
+                            没有了
+                        {else /}
+                            <a href="({:URL('index/news/newsShow')})?id=({$after->id})" target="_blank">
+                            ({$after->title})
+                        {/eq}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="newsSide"> 
+            {include file="public/list_login2"}
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>热门新闻资讯</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_hot" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>热门行业资讯</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_hang" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon">
+                <div class="titleCommon">
+                    <h3>最热平台公告</h3>
+                </div>
+                <div class="content3">
+                    <ul>
+                        {volist name="new_right_gong" id="vo"}
+                        <li><a href="({:URL('index/news/newsShow')})?id=({$vo.id})" target="_blank" title="({$vo.title})">({$vo.title})</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div id="news_top" class="boxCommon mt30"> </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+{include file="public/footer" /}
+{include file="public/div" /}
+ 
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+    {eq name='user_name' value=''}
+    <div class="login" id="indexLoginDiv">
+        <div class="loginTitle" ><a href="({:URL('index/user/make1')})" target="_blank">我要发布信息</a></div>
+        <form method="post" action="({:URL('index/user/loginOk')})">
+            <dl class="login_dl">
+                <dd>
+                    <span>用户名：</span>
+                    <input name="username" id="indexLoginId" type="text">
+                </dd>
+                <dd>
+                    <span>密&nbsp;码：</span>
+                    <input onkeydown="bindKey('indexLogin')" name="password" id="indexPassword" type="password">
+                </dd>
+               
+                <dd>
+                    <span>验证码：</span>
+                    <input onkeydown="bindKey('indexLogin')" name="code" id="indexPassword" type="password" style="width:60px">
+                    <img src="({:captcha_src()})" alt="" onclick="revo()" id="ddd" width="80px"  style="margin-top:5px;cursor:pointer;" />
+                </dd> 
+
+                <i id="loginError"></i>
+            </dl>
+            <div class="loginBnt" style="margin-top:-15px">
+                <div><button type="submit" name="Submit" class="bnt1">登 录</button>
+                <input class="bnt2" onclick="location.href='({:url("index/user/register")})'" type="button" value="注 册" /></div>
+                <div style="clear:left;padding-top:10px;padding-left:30px;"><a href="({:url('index/user/userMima')})">忘记密码？</a></div>
+              
+            </div> 
+        </form>
+    </div>
+    {else /}
+     <div class="login" id="indexLoginDiv">
+        <div class="loginTitle" ><a href="({:URL('index/user/make1')})" target="_blank">我要发布信息</a></div>
+        <form method="post" action="({:URL('index/user/loginOk')})">
+            <dl class="login_dl">
+                <dd>
+                    <span>用户名：</span>
+                    <span style="font-size:20px;color:blue;">({$user_name})</span>
+                </dd>
+                <dd>
+                    <a href="({:URL('index/user/show')})"><span style="margin-left:5px">用户中心</span></a>
+                    <a href="({:URL('index/user/showCatid')})"><span style="margin-left:5px">查看订单</span></a>
+                    <a href="({:URL('index/user/show')})"><span style="margin-left:5px">修改资料</span></a>
+                </dd>
+
+                <i id="loginError"></i>
+            </dl>
+            <div class="loginBnt" style="margin-top:-15px">
+                <div><button type="submit" name="Submit" class="bnt1">管理</button>
+                <input class="bnt2" onclick="location.href='({:url("index/user/loginOut")})'" type="button" value="退  出" /></div>
+                {eq name="users->tel" value=""}
+                <div style="clear:left;padding-top:10px;padding-left:30px;float:right;margin-right:30px;color:red;">为了您的账号安全，请尽快完善信息</div>
+                {else/}
+
+                {/eq}
+                <div style="clear:left;padding-top:10px;padding-left:30px;float:right;margin-right:30px">联系客服</div>
+              
+            </div> 
+        </form>
+
+    </div>
+    {/eq}
+    <script type="text/javascript">
+        function revo(){
+           var img = document.getElementById('ddd');
+           img.src = '({:captcha_src()})';
+        }
+    </script>

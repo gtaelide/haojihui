@@ -1,0 +1,113 @@
+{include file='public/meta' /}
+<title>分类管理</title>
+</head>
+<body>
+
+<div class="pd-20 text-c">
+  <form class="Huiform" action="/" method="post" id="myform">
+    添加分类：
+    <input type="hidden" id="hid_ccid" value="" >
+    <input class="input-text" style="width:250px" type="text" value="" placeholder="输入职位" id="article-class-val" name="content"/>
+    <button type="button" class="btn btn-success" id="" name="" onClick="type_add()" style="margin-left:10px;"><i class="icon-plus"></i> 添加</button>
+  </form>
+  <div class="article-class-list cl mt-20">
+    <table class="table table-border table-bordered table-hover table-bg">
+      <thead>
+        <tr class="text-c">
+          <th width="25"><input type="checkbox" name="" value=""></th>
+          <th width="80">ID</th>
+          <th width="80">是否交易</th>
+          <th>分类名称</th>
+          <th width="100">所属分类</th>
+          <th width="70">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      {volist name="list" id="vo"}
+        <tr class="text-c">
+          <td><input type="checkbox" name="" value=""></td>
+          <td>({$vo.id})</td>
+          <td>
+              {eq name="vo.allow" value="0"}
+                                    否
+              {else /}
+                                   是
+              {/eq}
+          </td>
+          <td class="text-l">
+          {eq name="vo.pid" value="0"}
+               ({$vo.content})
+          {else /}
+               &nbsp;&nbsp;&nbsp;&nbsp;|---({$vo.content})
+          {/eq}
+          </td>
+          <td class="text-l">
+              {switch name="vo.pid"}
+                {case value="4"}工程信息{/case}
+                {case value="5"}工程人员{/case}
+                {case value="6"}物件运输{/case}
+                {case value="8"}其他供求{/case}
+                {default /}顶级分类
+              {/switch}
+          </td>
+          <td class="f-14"><a title="删除" href="javascript:;" onclick="type_del(this,'({$vo.id})')" class="ml-5" style="text-decoration:none"><i class="icon-trash"></i>删除</a></td>
+        </tr>
+       {/volist} 
+      </tbody>
+    </table>
+    ({$list->render()})
+  </div>
+</div>
+{include file='public/footer' /}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+/*管理员-删除*/
+function type_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:'id='+id,
+			url: '({:URL("admin/invite/inviteTypeDel")})',
+			cache:false,
+			success: function(data){
+				var parsedJson = eval("("+data+")");
+			　　 if(parsedJson.stuats == 0){
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			　　 }else{
+				   $(obj).parents("tr").remove();
+				   layer.msg(parsedJson.msg,{icon:1,time:1000});
+			    }
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+function type_add(obj){
+	layer.confirm('确认要添加吗？',function(index){
+		$.ajax({
+			type: 'post',
+			data:$('#myform').serialize(),
+			url: '({:URL("admin/invite/inviteTypeAdd")})',
+			cache:false,
+			success: function(data){
+				  var parsedJson = eval("("+data+")");
+      　　if(parsedJson.stuats == 0){
+           layer.msg(parsedJson.msg,{icon:2,time:1000});
+      　　}else if(parsedJson.stuats == 1){
+           layer.msg(parsedJson.msg,{icon:1,time:1000});
+           setTimeout("location.reload()",1000);
+          }else if(parsedJson.stuats == 2){
+                   layer.msg(parsedJson.msg,{icon:2,time:1000});
+          }
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+</script>
+</body>
+</html>
